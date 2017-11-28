@@ -22,15 +22,17 @@
 
         }
 
-        img{
-            position: relative;
-            left: 500px;
-        }
 
         #secondImg{
-            position: relative;
-            top: -500px;
+            position: absolute;
+            top: 350px;
 
+            left: 390px;
+
+
+        }
+        body{
+          width: 1200px;
         }
 
     </style>
@@ -50,7 +52,7 @@
 <body>
 <h1>Project 1</h1>
 
-<img id=firstImg src="http://www.uzinggo.com/images/lessons/teacherguides/US370301CD_1.png"  title="Planet Orbits">
+<center><img id=firstImg src="http://www.uzinggo.com/images/lessons/teacherguides/US370301CD_1.png"  title="Planet Orbits"></center>
 <div>
     <h2>Links to interactive visualisations</h2>
     <ul>
@@ -62,23 +64,55 @@
 </div>
 <div>
     <h2 >Positive and Negative Aspects about the 2 Visualisations </h2>
-    <h3 >First visualisation:</h3>
+    <center><h3 >First visualisation:</h3>
+    <p style="max-width:40%;">The visualisation presents themes of Polish books and how they are related to each other, connected via lines. </p>
     <h4 >Positive</h4>
-    It’s easy to estimate the frequency of each theme by looking at the sizes of the bubbles, with an accompanying legend on the side showing what 200 and 2000 occurrences look like. The legend also shows which colors represent which themes, which is easy to see.
-At first, it’s a bit difficult to see how the themes are actually related, with lots of lines going everywhere, but when hovering over one bubble the lines that are actually connected to that bubble get highlighted, along with the other themes that are related to the theme you hover over, making it easy to see the connections of a theme you are interested in.
-    <h4>Negative</h4>
-    As mentioned before, there are many lines going everywhere, and it looks a bit cluttered. Each time the page is loaded, the graph is randomly positioned, and sometimes overlaps with the legend to the right or ends up outside the box where it’s presented, making it difficult or impossible to read some of the text. There are also areas where there are too many themes in the same space, which also makes text overlap.
-The lines between the themes don’t actually add any value to the visualization when the themes aren’t hovered; everything would look clearer and cleaner if the lines only appeared when you hover the theme.
 
-    <h3 >Second visualisation:</h3>
-    <h4>Positive</h4>
+      <p style="max-width:40%;">
+        It’s easy to estimate the frequency of each theme by looking at the sizes of the bubbles, with an accompanying legend on the side showing what 200 and 2000 occurrences look like. The legend also shows which colors represent which themes, which is easy to see.
+        At first, it’s a bit difficult to see how the themes are actually related, with lots of lines going everywhere, but when hovering over one bubble the lines that are actually connected to that bubble get highlighted, along with the other themes that are related to the theme you hover over, making it easy to see the connections of a theme you are interested in.
+      </p>
+    </center>
     <h4>Negative</h4>
+    <center>
+      <p style="max-width:40%;">
+        As mentioned before, there are many lines going everywhere, and it looks a bit cluttered. Each time the page is loaded, the graph is randomly positioned, and sometimes overlaps with the legend to the right or ends up outside the box where it’s presented, making it difficult or impossible to read some of the text. There are also areas where there are too many themes in the same space, which also makes text overlap.
+        The lines between the themes don’t actually add any value to the visualization when the themes aren’t hovered; everything would look clearer and cleaner if the lines only appeared when you hover the theme.
+      </p>
+    </center>
+    <h3 >Second visualisation:</h3><center>
+    <p style="max-width:40%;">This visualisation aims to present how famous creative people structure their day based on 6 categories of daily routines- namely SLEEP, CREATIVE WORK, DAY JOB/ADMIN, FOOD/LEISURE, EXERCISE and OTHER. For each individual a 24h timeline is structured into consecutively aligned colored bars representing the above mentioned activities.</p>
+    <h4>Positive</h4>
+
+      <p style="max-width:40%;">
+        The visualisation allows for accessing multiple levels of details ( e.g. by hovering over each of the bars we can get more specific information the daily routines of an individual)
+        The design also supports filtering the activity categories so we can both have a broad overview of all the categorical data as well as access and compare selected groups or individual categories separately. Lastly, the use of the color is effective since prominent colors are used to highlight the categories that are most likely to be of interest to the user (e.g. “creative work” category is represented using red) while a more neutral color (gray) is used for the less well-defined category “other”.
+
+      </p>
+      <br>
+
+      <img src="plot2.png" width="50%" height="50%">
+    </center>
+    <h4>Negative</h4>
+    <center>
+      <p style="max-width:40%;">
+        The data for each category are fragmented over time and there is no option offered to aggregate them per category for each individual.
+        Thus, it is difficult to form a clear idea about the total amount of time each individual spends on a specific activity and compare the differences between different individuals (see image above). Another negative aspect is that it is not easy to compare the daily routines of people that are not positioned close to each other in the row index. For example while we can easily compare the daily routines between Haruki Murakami and Voltaire or Benjamin Franklin, it is quite difficult to compare the routines of Honore de Balzac and Pablo Picasso.
+      </p>
+    </center>
     <h2 > Individual part: Describe an interactive visualization
         that you would like to be able to build after this course has finished </h2>
     <h3> Ioanna Arkoudi:</h3>
     <p> Describe here...</p>
     <h3> Jesper Näsman:</h3>
-    <p> Describe here...</p>
+    <center>
+    <p style="max-width:40%;"> I would like do something like using data from <a href="http://politietsregisterblade.dk/">Københavns Stadsarkiv</a> which contains information
+    about people who lived in Copenhagen some 100 years ago, along with their relations and professions and all the locations where they lived.
+    Addresses in this database also contain coordinates, and it could be interesting to plot data based on neighborhoods of Copenhagen, such as
+    the most common professions per neighborhood or how big portion of people in each neighborhood had children, in a similar fashion as
+    <a href="https://www.nytimes.com/interactive/2016/12/26/upshot/duck-dynasty-vs-modern-family-television-maps.html">
+    this</a>.</p></center>
+    <h3> Jiri:</h3>
 </div>
 
 </body>
