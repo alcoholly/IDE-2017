@@ -7,7 +7,7 @@
         h1 {
             color:white;
             text-align: center;
-            
+
         }
 
         body {
@@ -104,7 +104,16 @@
     <h2 > Individual part: Describe an interactive visualization
         that you would like to be able to build after this course has finished </h2>
     <h3> Ioanna Arkoudi:</h3>
-    <p> Describe here...</p>
+    <center>
+    <p style="max-width:40%;"> This semester I have taken Interactive Graphs & Interactions as an elective course in DTU and I am currently working on a project that aims to explore the musical preferences of people around the world
+    using data from Last.fm (more information about this project are available <a href="https://www.youtube.com/watch?v=Ko8XdscIJEg"> here</a>). After Interactive Data Exploration finishes, I would
+    like to be able to use the collected data and create an interactive graph with the set of the most popular artists around the world as nodes. The edges between the nodes are added by thresholding a similarity score between the artists - that is also provided by Last.fm. A basic description of the interactive visualisation I would like to implement is provided below:
+        <ol> <li> The visualisation should include the graph (nodes and edges) with the sizes of the nodes corresponding to their degree - so that the user gets an idea about the significance of each node in the graph and is able to easily spot the hubs. Next to the graph, there should be a section that contains basic stats about the graph (number of nodes, number of edges, average degree etc).</li>
+        <li> When the user clicks on a node then the links it creates with the other nodes are highlighted. The content of section that appears next to the graph also changes to include basic information about this node (degree,  betweenness centrality etc). </li>
+        <li> I would additionally like to incorporate an on-off "community mode". This mode should be off by default but when the user activates it then the nodes of each community are colorized differently. The section next to the graph now should contain basic information about the community partition of the graph (Modularity score,number of communities, number of nodes in each community etc).</li>
+        <li> Lastly, when the user clicks on a node of a community then this community is highlighted and the informative section next to the graph changes again to contain information about the selected community (number of nodes, number of inside links, number of outside links to other communities).</li>
+    </ol>
+    </p></center>
     <h3> Jesper Näsman:</h3>
     <center>
     <p style="max-width:40%;"> I would like do something like using data from <a href="http://politietsregisterblade.dk/">Københavns Stadsarkiv</a> which contains information
