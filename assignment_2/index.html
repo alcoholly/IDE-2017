@@ -2,12 +2,70 @@
 
 <head>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <script src="script.js"></script>
+  <script src="script2.js"></script>
+
+  <style>
+  body{
+    width:1000px;
+    margin:auto;
+    font-family:Georgia, serif;
+  }
+
+  .codeblock{
+    font-family:"Courier New", Courier, monospace;
+  }
+
+  .bar{
+    fill:#b3edef;
+  }
+
+  .bar:hover{
+    fill:#385a5b;
+  }
+
+  </style>
+
 </head>
 
 <body>
 <h2>Assignment 2</h2>
+<br>
 
+<h3>Mean temperatures per decade</h3>
+<div class="svgchart"></div>
+
+
+
+<h2>Motivation, method, conclusions</h2>
+The data we chose to work with is the means for every year. Since the raw data isn't proper csv
+(the entries are separated by multiple spaces), we normalized it with sed:<br><br>
+<span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
+<br><br>
+The first chart is a modified version from (url) and the second chart we built on our own. We also tried
+implementing a regression line for the first chart but ended up not having enough time to finish that. It
+would however have added some value to the chart.
+The temperature is, as expected, increasing, and that can clearly be seen in both charts. While we could
+have extended the charts by adding the temperature for each months, it would likely just have made the charts
+look cluttered and not actually contributed to anything.
+
+<h2>Individual part</h2>
+
+<h3>Question 1</h3>
+
+<h3>Question 2 (Jesper)</h3>
+I wanted to create a chart similar to <a href="http://prcweb.co.uk/img/radial-bar-sample1.png">this</a>
+(but years instead of months that the example is using) but didn't manage to find a good example that
+I could understand. I think a circular chart like that would not only look good, but it would make it easy
+to see the increase for each year, similar to a bar chart. Hovering over a specific year could provide more
+detailed information about that year. Buttons to change the type of visualization could also be added to
+change the data that is in the chart from temperature to information such as rainfall or even activities that
+correlate with the temperature increase, like the amount of carbon dioxide released into the atmosphere.
+A function to select a range of years could be a nice feature as well.
+
+
+
+
+<h3>Question 3</h3>
 
 
 </body>
