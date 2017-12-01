@@ -31,22 +31,21 @@
 <h2>Assignment 2</h2>
 <br>
 
-<h3>Mean temperatures per decade</h3>
+<h3>(1) Mean temperatures per decade</h3>
 <div class="svgchart"></div>
 
 
 
 <h2>Motivation, method, conclusions</h2>
-The data we chose to work with is the means for every year. Since the raw data isn't proper csv
+Since the raw data isn't proper csv
 (the entries are separated by multiple spaces), we normalized it with sed:<br><br>
 <span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
 <br><br>
-The first chart is a modified version from (url) and the second chart we built on our own. We also tried
-implementing a regression line for the first chart but ended up not having enough time to finish that. It
-would however have added some value to the chart.
-The temperature is, as expected, increasing, and that can clearly be seen in both charts. While we could
-have extended the charts by adding the temperature for each months, it would likely just have made the charts
-look cluttered and not actually contributed to anything.
+The first chart is the one we created from scratch. Since we wanted to make a bar chart,
+and since it would just be too crowded using every year, we wrote a Python script to get
+the mean temperature for each decade (based on the mean temperature for each year) instead,
+since it still shows that the mean temperature is increasing. It also allowed us to work
+with different sizes of data so that the two plots aren't too similar.
 
 <h2>Individual part</h2>
 
