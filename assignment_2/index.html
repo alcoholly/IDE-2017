@@ -17,11 +17,27 @@
 
   .bar{
     fill:#b3edef;
+    stroke:black;
   }
 
   .bar:hover{
-    fill:#385a5b;
+    stroke:black;
+    fill:red;
   }
+
+  svg{
+    width:100%;
+    height:50%;
+  }
+
+  .d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
 
   </style>
 
@@ -31,21 +47,32 @@
 <h2>Assignment 2</h2>
 <br>
 
-<h3>(1) Mean temperatures per decade</h3>
-<div class="svgchart"></div>
+<h3>(1) Mean temperatures in St. Petersburg by decade</h3>
+<svg id="barchart"></svg>
 
 
 
 <h2>Motivation, method, conclusions</h2>
+
+The <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14">
+data</a> we chose is showing temperatures in St. Petersburg from 1880-2017.<br>
 Since the raw data isn't proper csv
-(the entries are separated by multiple spaces), we normalized it with sed:<br><br>
+(the entries are separated by multiple spaces, not comma or tab), we normalized it with sed:<br><br>
 <span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
 <br><br>
-The first chart is the one we created from scratch. Since we wanted to make a bar chart,
-and since it would just be too crowded using every year, we wrote a Python script to get
-the mean temperature for each decade (based on the mean temperature for each year) instead,
-since it still shows that the mean temperature is increasing. It also allowed us to work
-with different sizes of data so that the two plots aren't too similar.
+The first chart is the one we created from scratch (although in order to learn how to
+do it we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
+Let's make a bar chart</a> site so there are probably some similarities).
+Since we wanted to make a bar chart, and since it would just be too crowded using every
+year, we wrote a Python script to get the mean temperature for each decade (based on
+the mean temperature for each year) instead,
+since it still shows that the mean temperature is increasing. Since the current decade is still
+"ongoing", we chose to leave it out for the decade data. It also allowed us to work
+with different datasets of data so that we don't have to present the exact same data twice.
+<br>
+<br>
+(for the other plot where we show every year we can mention that the variation in temperature
+decreases by time)
 
 <h2>Individual part</h2>
 
@@ -59,7 +86,11 @@ to see the increase for each year, similar to a bar chart. Hovering over a speci
 detailed information about that year. Buttons to change the type of visualization could also be added to
 change the data that is in the chart from temperature to information such as rainfall or even activities that
 correlate with the temperature increase, like the amount of carbon dioxide released into the atmosphere.
-A function to select a range of years could be a nice feature as well.
+A function to select a range of years could be a nice feature as well to allow the users to specify themselves
+exactly what data to see. <br>
+For the bar chart, (1), a nice addition would be to have tooltips that appear on hover, showing the exact
+temperature, since you currently only get a hint of the exact temperature; as it is now the bar chart
+is better at just showing relative differences between decades. 
 
 
 
