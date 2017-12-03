@@ -81,30 +81,33 @@
 
 <h3>(1) Mean temperatures in St. Petersburg by decade</h3>
 <svg id="barchart"></svg>
-<h3>(2) Scatter plot of mean temperatures vs years</h3>
+<h3>(2) Dot plot of mean temperatures vs years</h3>
 <svg1 id="scatter"></svg1>
 
 <h2>Motivation, method, conclusions</h2>
 
-The <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14">
-data</a> we chose is showing temperatures in St. Petersburg from 1917-2017.<br>
-Since the raw data isn't proper csv
-(the entries are separated by multiple spaces, not comma or tab), we normalized it with sed:<br><br>
+We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The dataset that we downloaded contains surface temperature data for each month of every year from 1880-2017 arranged in (12) columns. A 13th column contains the average temperature (over all months) for each year. We decided to work with the average year temperature as it captures the central tendency of the data while allowing for a compact visualization of the observations and a direct comparison between different years.
+<br><br>
+With respect to data preparation -since the dataset that we downloaded was not in proper csv format (the entries are separated by multiple spaces, not comma or tab)-
+we normalized it with sed:
+<br><br>
 <span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
 <br><br>
-The first chart is the one we created from scratch (although in order to learn how to
-do it we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
-Let's make a bar chart</a> site so there are probably some similarities).
-Since we wanted to make a bar chart, and since it would just be too crowded using every
-year, we wrote a Python script to get the mean temperature for each decade (based on
-the mean temperature for each year) instead,
-since it still shows that the mean temperature is increasing. Since the current decade is still
-"ongoing", we chose to leave it out for the decade data. It also allowed us to work
-with different datasets so that we don't have to present the exact same data twice.
-<br>
-<br>
-(for the other plot where we show every year we can mention that the variation in temperature
-decreases by time)
+Moreover, we excluded the observations before 1917 as the current project aims to investigate the weather changes for the last 100 years. The last row, that contains the observations for the current year (2017), was also excluded from our analysis since the year is still ongoing and some values are missing. We decided to include 2 different visualizations: a dot plot of the mean temperature from 1917 to 2016 and a bar chart that shows the average decade temperature for the same year range.
+The dot plot was an adaptation of a visualization found online <a href= "https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> here </a>.
+  The second visualization is the one we created from scratch (although - in order to learn how to
+  do it- we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
+  Let's make a bar chart</a> site so there are probably some similarities).
+  <br><br>
+  While the first visualisation aims to present the observations in more detail, the second one aims to offer a more general picture of the temperature differences over time. For this purpose, we wrote a Python script to compute the mean temperature for each decade from 1917 to 2016 (1917-1926, 1927-1936 etc) and saved it as a .csv file.
+  Switching from years to decades allowed us to work with different datasets and not presenting the exact same data twice. It is also worth-mentioning that creating a bar chart for the average temperature per year would not be a good choice since the number of observations marginally does not exceed the conventional
+  scale limit of bar charts (tens to <i>hundred</i> categories).
+
+  <br>
+  <br>
+  (for the other plot where we show every year we can mention that the variation in temperature
+  decreases by time)
+
 
 <h2>Individual part</h2>
 
@@ -124,12 +127,14 @@ For the bar chart, (1), a nice addition would be to have tooltips that appear on
 temperature, since you currently only get a hint of the exact temperature; as it is now the bar chart
 is better at just showing relative differences between decades.
 
+<h3>Question 3 (Jiri)</h3>
+Dataset size depends on the complexity of the data <a href="http://square.github.io/crossfilter/">Crossfilter</a> project
+for example works with circa 230.000 datapoints. This is a very large number that is only feasible because of the low
+complexity of the data (five datapoints per entry).
 
+<h3></h3>
 
-
-<h3>Question 3</h3>
-
-
+</aside>
 </body>
 
 

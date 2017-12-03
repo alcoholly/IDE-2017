@@ -59,7 +59,7 @@ function init() {
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("mouseout", function(d) {
-                div1.transition()
+                div.transition()
                     .duration(500)
                     .style("opacity", 0);
             });
