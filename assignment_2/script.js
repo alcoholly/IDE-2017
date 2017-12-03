@@ -8,7 +8,7 @@ function init() {
 
     // FIRST PLOT
 
-    var margin1 = {top: 20, right: 20, bottom: 30, left: 50},
+    var margin1 = {top: 20, right: 20, bottom: 20, left: 50},
         width1 = 960 - margin1.left - margin1.right,
         height1 = 500 - margin1.top - margin1.bottom;
 
@@ -95,7 +95,8 @@ function init() {
     d3.csv("decade_means.csv", function(data) {
 
         data.forEach(function(d){
-            d.decade = d.decade + '-' + d.decade.replace(/0$/,"9");
+            var range= +d.decade + 9;
+            d.decade = d.decade + '-' + range;
             d.mean = +d.mean;
         });
 
