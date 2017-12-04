@@ -75,16 +75,118 @@ function init() {
     });
        // SECOND PLOT
 
+   var margin2 = {top: 20, right: 20, bottom: 20, left: 50},
+       width2 = 960 - margin2.left - margin2.right;
+       height2 = 500 - margin2.top - margin2.bottom;
+
+   var x = d3.scaleLinear().range([0, width2]);
+   var y = d3.scaleLinear().range([height2, 0]);
+   console.log(height2);
+
+    // define the 1st line: winter
+    var valueline = d3.line()
+        .x(function(d) { return x(d.YEAR); })
+        .y(function(d) { return y(d["D-J-F"]); });
+
+    // define the 2nd line: spring
+    var valueline2 = d3.line()
+        .x(function(d) {  return x(d.YEAR); })
+        .y(function(d) { return y(d["M-A-M"]); });
+
+    // define the 3rd line: summer
+    var valueline3 = d3.line()
+        .x(function(d) {  return x(d.YEAR); })
+        .y(function(d) { return y(d["J-J-A"]); });
+
+    // define the 4th line: autumn
+
+    var valueline4 = d3.line()
+        .x(function(d) {  return x(d.YEAR); })
+        .y(function(d) { return y(d["S-O-N"]); });
+
+    // append the svg object to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+
+    var svg2 = d3.select("#scatter2").append("svg")
+        .attr("width", width2 + margin2.left + margin2.right)
+        .attr("height", height2 + margin2.top + margin2.bottom)
+        .append("g") // The ‘g’ element is a container element for grouping together related graphics elements.
+        .attr("transform",
+            "translate(" + margin2.left + "," + margin2.top + ")");
+
+    // Get the data
+    d3.csv("station_normalized.csv", function(error, data) {
+        if (error) throw error;
+
+        // format the data
+        data.forEach(function(d) {
+            d.YEAR = +d.YEAR;
+            d["D-J-F"] = +d["D-J-F"];
+            d["M-A-M"] = +d["M-A-M"];
+            d["J-J-A"] = +d["J-J-A"];
+            d["S-O-N"] = +d["S-O-N"];
+
+        });
+
+        // Scale the range of the data
+        x.domain(d3.extent(data, function(d) { return d.YEAR; }));
+        y.domain([d3.min(data, function(d) {
+            return Math.min(d["D-J-F"], d["M-A-M"], d["J-J-A"],d["S-O-N"] ); }), d3.max(data, function(d) {
+            return Math.max(d["D-J-F"], d["M-A-M"], d["J-J-A"], d["S-O-N"] ); })]);
+
+        // Add the valueline path.
+        svg2.append("path")  //winter
+            .data([data])
+            .attr("class", "line")
+            .attr("d", valueline);
+
+        // Add the valueline2 path.
+        svg2.append("path") //spring
+            .data([data])
+            .attr("class", "line")
+            .style("stroke", "green")
+            .attr("d", valueline2);
+
+        // Add the valueline3 path.
+        svg2.append("path") // summer
+            .data([data])
+            .attr("class", "line")
+            .style("stroke", "red")
+            .attr("d", valueline3);
+
+        // Add the valueline4 path.
+        svg2.append("path") // autumn
+            .data([data])
+            .attr("class", "line")
+            .style("stroke", "brown")
+            .attr("d", valueline4);
+
+        // Add the X Axis
+        svg2.append("g")
+            .attr("transform", "translate(0," + height2 + ")")
+            .call(d3.axisBottom(x));
+
+        // Add the Y Axis
+        svg2.append("g")
+            .call(d3.axisLeft(y));
+
+
+    });
+
+
+
+// THIRD PLOT
     var margin = {top: 0, right: 0, bottom: 0, left: 25},
         width = parseFloat(d3.select('body').style('width')) - 20;
-    height = 500;
+    var height = 500;
 
 
-    var y = d3.scaleLinear().range([height, 0]);
-    var x = d3.scaleBand().range([0, width]);
+    var y3 = d3.scaleLinear().range([height, 0]);
+    var x3 = d3.scaleBand().range([0, width]);
 
-    var xAxis = d3.axisBottom(x);
-    var yAxis = d3.axisLeft(y);
+    var xAxis = d3.axisBottom(x3);
+    var yAxis = d3.axisLeft(y3);
 
     var svg = d3.select("#barchart")
         .append("g")
@@ -100,10 +202,10 @@ function init() {
             d.mean = +d.mean;
         });
 
-        x.domain(data.map(function(d) { return d.decade; }))
+        x3.domain(data.map(function(d) { return d.decade; }))
             .paddingInner(0.1)
             .paddingOuter(0.2);
-        y.domain([0, d3.max(data, function(d) { return d.mean; }) + 0.5]);
+        y3.domain([0, d3.max(data, function(d) { return d.mean; }) + 0.5]);
 
         svg.append("g")
             .attr("transform", "translate(0," + height + ")")
@@ -117,9 +219,9 @@ function init() {
             .enter().append("rect")
             .attr("class", "bar")
             .attr("data-mean", function(d) { return d.mean; })
-            .attr("x", function(d) { return x(d.decade); })
-            .attr("width", x.bandwidth())
-            .attr("y", function(d) { return y(d.mean); })
-            .attr("height", function(d) { return height - y(d.mean); });
+            .attr("x", function(d) { return x3(d.decade); })
+            .attr("width", x3.bandwidth())
+            .attr("y", function(d) { return y3(d.mean); })
+            .attr("height", function(d) { return height - y3(d.mean); });
     });
 }

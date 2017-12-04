@@ -42,9 +42,11 @@
   border-radius: 2px;
 }
 
-  svg1{
-    width:100%;
-    height:50%;
+
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
   }
 
   .dot {
@@ -79,10 +81,14 @@
 <h2>Assignment 2</h2>
 <br>
 
-<h3>(1) Dot plot of mean temperatures in St. Petersburg over years</h3>
+<h3>(1) Dot plot of average annual temperatures in St. Petersburg over the years</h3>
 <svg1 id="scatter"></svg1>
 
-<h3>(2) Mean temperatures in St. Petersburg by decade</h3>
+<h3>(2) Average temperatures for each season in St. Petersburg over the years </h3>
+<strong> (winter: blue, spring: green, summer: red, autumn: brown)</strong>
+<svg2 id="scatter2"></svg2>
+
+<h3>(3) Average temperatures in St. Petersburg by decade</h3>
 <svg id="barchart"></svg>
 
 
