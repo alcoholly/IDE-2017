@@ -30,7 +30,7 @@
 
   .svgplot{
     width:100%;
-    height:80%;
+    height:50%;
   }
 
   .d3-tip {
@@ -114,18 +114,20 @@
 
 We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The dataset that we downloaded contains surface temperature data for each month and each season of every year from 1880-2017 arranged in columns. The last column contains the average temperature (over all months) for each year. We decided to work with the average year temperature as it captures the central tendency of the data while allowing for a compact visualization of the observations and a direct comparison between different years.
 <br><br>
-With respect to data preparation -since the dataset that we downloaded was not in proper csv format (the entries are separated by multiple spaces, not comma or tab)-
-we normalized it with sed:
+With respect to data preparation - since the dataset that we downloaded was not in proper csv format (the entries are separated by multiple spaces, not comma or tab) -
+we normalized it with sed so that it could be read using the d3.csv function:
 <br><br>
 <span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
 <br><br>
-Moreover, we excluded the observations before 1917 as the current project aims to investigate the weather changes for the last 100 years. The last row, that contains the observations for the current year (2017), was also excluded from our analysis since the year is still ongoing and some values are missing. We decided to include 2 different visualizations: a dot plot of the mean temperature from 1917 to 2016 and a bar chart that shows the average decade temperature for the same year range.
-The dot plot was an adaptation of a visualization found online <a href= "https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> here </a>.
-  The second visualization is the one we created from scratch (although - in order to learn how to
+Moreover, we excluded the observations before 1917 as the project description says we should investigate the weather changes for the last 100 years. The last row, that contains the observations for the current year (2017), was also excluded from our analysis since the year is still ongoing and some values are missing. We decided to include three different visualizations: a dot plot of the mean temperature from 1917 to 2016, <i>the second one</i> and a bar chart that shows the average decade temperature for the same year range.
+The dot plot was an adaptation of a visualization found online <a href= "https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> here</a>.<br>
+<i>Write something about second visualisation? Same source as first one?</i><br>
+
+  The third visualization is the one we created from scratch (although - in order to learn how to
   do it- we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
   Let's make a bar chart</a> site so there are probably some similarities).
   <br><br>
-  While the first visualisation aims to present the observations in more detail, the second one aims to offer a more general picture of the temperature differences over time. For this purpose, we wrote a Python script to compute the mean temperature for each decade from 1917 to 2016 (1917-1926, 1927-1936 etc) and saved it as a .csv file.
+  While the first visualisation aims to present the observations in more detail, the third one aims to offer a more general picture of the temperature differences over time. For this purpose, we wrote a Python script to compute the mean temperature for each decade from 1917 to 2016 (1917-1926, 1927-1936 etc) and saved it as a .csv file.
   Switching from years to decades allowed us to work with different datasets and not presenting the exact same data twice. It is also worth-mentioning that creating a bar chart for the average temperature per year would not be a good choice since the number of observations marginally does not exceed the conventional
   scale limit of bar charts (tens to <i>hundred</i> categories).
 
