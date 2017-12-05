@@ -82,10 +82,11 @@
 </head>
 
 <body>
+<br>
 <h2>Assignment 2</h2>
 <br>
 
-<h3>(1) Dot plot of average annual temperatures in St. Petersburg over the years</h3>
+<h3>(1) Average annual temperatures in St. Petersburg over the years</h3>
 <svg id="scatter" class="svgplot"></svg>
 
 <h3>(2) Average temperatures for each season in St. Petersburg over the years </h3>
@@ -112,42 +113,67 @@
 
 <h2>Motivation, method, conclusions</h2>
 
-We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The dataset that we downloaded contains surface temperature data for each month and each season of every year from 1880-2017 arranged in columns. The last column contains the average temperature (over all months) for each year. We decided to work with the average year temperature as it captures the central tendency of the data while allowing for a compact visualization of the observations and a direct comparison between different years.
+We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The
+dataset that we downloaded contains surface temperature data for each month and each season of every year from 1880-2017 arranged in columns.
+The last column contains the average temperature (over all months) for each year. We decided to work with the <i> average annual and seasonal temperatures</i>
+(last 4 columns of the dataset) as they capture the central tendency of the monthly data while allowing for a compact visualization of the observations and a direct comparison
+between the observations for different years.
 <br><br>
 With respect to data preparation - since the dataset that we downloaded was not in proper csv format (the entries are separated by multiple spaces, not comma or tab) -
 we normalized it with sed so that it could be read using the d3.csv function:
 <br><br>
 <span class="codeblock">sed 's/  */,/g' < station.txt > station_normalized.csv</span>
 <br><br>
-Moreover, we excluded the observations before 1917 as the project description says we should investigate the weather changes for the last 100 years. The last row, that contains the observations for the current year (2017), was also excluded from our analysis since the year is still ongoing and some values are missing. We decided to include three different visualizations: a dot plot of the mean temperature from 1917 to 2016, <i>the second one</i> and a bar chart that shows the average decade temperature for the same year range.
-The dot plot was an adaptation of a visualization found online <a href= "https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> here</a>.<br>
-<i>Write something about second visualisation? Same source as first one?</i><br>
+Moreover, we excluded the observations before 1917 as the project description says that we should investigate the weather changes for the last 100 years. The last row, that contains the observations for the current year (2017), was also excluded from our analysis since the year is still ongoing and some values are missing. We decided to include three different visualizations: a dot plot of the mean temperature from 1917 to 2016, a multiple line plot that shown the mean temperatures for each season and a bar chart that shows the average decade temperature for the same year range.
+The dot plot and the line plot were an adaptations of a visualization found online <a href= "https://bl.ocks.org/d3noob/257c360b3650b9f0a52dd8257d7a2d73"> here</a> and <a href="https://bl.ocks.org/d3noob/4db972df5d7efc7d611255d1cc6f3c4f"> here</a> respectively.<br>
 
-  The third visualization is the one we created from scratch (although - in order to learn how to
-  do it- we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
-  Let's make a bar chart</a> site so there are probably some similarities).
-  <br><br>
-  While the first visualisation aims to present the observations in more detail, the third one aims to offer a more general picture of the temperature differences over time. For this purpose, we wrote a Python script to compute the mean temperature for each decade from 1917 to 2016 (1917-1926, 1927-1936 etc) and saved it as a .csv file.
-  Switching from years to decades allowed us to work with different datasets and not presenting the exact same data twice. It is also worth-mentioning that creating a bar chart for the average temperature per year would not be a good choice since the number of observations marginally does not exceed the conventional
-  scale limit of bar charts (tens to <i>hundred</i> categories).
+The third visualization is the one we created from scratch (although - in order to learn how to
+do it- we did look on different resources like the lecture notes and the <a href="https://bost.ocks.org/mike/bar/">
+Let's make a bar chart</a> site so there are probably some similarities).
+<br><br>
+While the first two visualisations aim to present the observations in more detail -that would allow us to discover trends and detect outliers-, the third one aims to offer a more general picture of the temperature differences over time. For this purpose, we wrote a Python script to compute the mean temperature for each decade from 1917 to 2016 (1917-1926, 1927-1936 etc) and saved it as a .csv file.
+Switching from seasons and years to decades allowed us to work with different datasets and not presenting the exact same data twice. It is also worth-mentioning that creating a bar chart for the average temperature per year would not be a good choice since the number of observations marginally does not exceed the conventional
+scale limit of bar charts (tens to <i>hundred</i> categories).
 
-  <br>
-  <br>
-  (for the other plot where we show every year we can mention that the variation in temperature
-  decreases by time)
+<br><br>
+The first and third visualisation show a trend towards slight increase in temperature <strong>*</strong>.
+At the same time, we can assume that the noticed change in temperature over the years is not caused by only one of the seasons
+being warmer, because the relative role of each season stays the same - as we can observe in the second visualisation. The first graph also shows that since the year 1990 the data
+is quite uniform without any clear outliers. This is probably due to a chance, because it was the same case between the years 1910 and 1940, where the uniformity is very similar. Overall, although the data that we presented tend
+to shift towards higher temperature values over the years, we cannot derive safe conclusions regarding the article's main question <i>How has the weather changed over the past 100 years</i> . More details on this
+are provided in the answer to Question 1.
+<br><br>
+<strong>*</strong> This trend would be more obvious for the viewer if we included regression lines in our plots
+but unfortunately the examples that we found online were quite complex and we were not able to successfully incorporate them into our code.
+
 
 
 <h2>Individual part</h2>
 
-<h3>Question 1</h3>
+<h3>Question 1 (Ioanna Arkoudi)</h3>
 The dataset that we used did not allow us to provide a confident answer to the article's main  question.
 We only explored one source of data, i.e. temperature, while <i>weather</i> is described in terms of various conditions -including humidity, precipitation, wind.
 By expanding our dataset to include different kinds of observations we would able to address the question more thoroughly.
 Another limitation in our approach was that we only used data from one city (St. Petersburg), thus our observations are constrained to this specific area that may not be reflective of the weather changes globally.
-Using more global datasets that cover a wide range of geographic locations would allow us to get more accurate estimates of how the weather has changed over the past 100 years.
-Lastly it is worth-mentioning that the observed changes in the weather are linked to global warming and human-induced climate changes and it would be enlightening to find datasets that combine weather observations,
+Using more global datasets that cover a wide range of larger geographic areas (e.g. countries) would allow us to get more accurate estimates of how the weather has changed over the past 100 years.
+Lastly, it is worth-mentioning that the observed changes in the weather are linked to global warming and human-induced climate changes and it would be enlightening to find datasets that combine weather observations
 with other sources of relevant information (e.g. sea level records, global CO2 emissions records) that would allow us to look for correlations and provide an interpretation of the results.
-In terms of visualisation...
+In terms of visualisation we could:
+<br></br>
+1) create multiple line plots that show how the different weather-related observations (temperature, humidity, precipitation, wind) change in different countries over the years. The users should be able
+to click on a choice field list and choose the weather element and the countries they are interested in comparing.
+<br></br>
+2) create map charts similar to <a href="https://www.kaggle.io/svf/195335/062aeda1473b00ec4b8505d5133dfc2c/__results___files/figure-html/unnamed-chunk-7-1.png"> this </a> that allow us to discover global trends regarding
+   average annual temperatures, humidity, precipitation etc. In order to be able to compare the changes over the years we should make these map charts interactive by incorporating a sliding bar with the years form 1917-2017
+(at the bottom/side of the plot) similar to <a href="http://www.boxi35.org/wp-content/uploads/2014/06/Renewal-of-digital-slide-PSD-material.jpg"> this</a> so that the users can see the consecutive
+changes (in temperature, humidity etc) on the map as we move from year 1917 to 2017.
+<br></br>
+3) do the same as above for presenting the changes in sea levels and sea level temperatures over the last 100 years - similarly to
+<a href="https://www.epa.gov/sites/production/files/styles/large/public/2016-07/sea-surface-temp-figure2-2016.png"> this </a>
+<br></br>
+4) create scatter plots (including regression lines) that reveal how the changes in different weather elements correlate on a global level with CO2 emissions- the users should again
+be able to click on a choice field list and choose the weather element they are interested in.
+<br></br>
 
 
 <h3>Question 2 (Jesper)</h3>
@@ -166,9 +192,19 @@ is better at just showing relative differences between decades.<br>
 We also considered adding a regression line to the first plot but didn't manage due to lack of time.
 
 <h3>Question 3 (Jiri)</h3>
-Dataset size depends on the complexity of the data <a href="http://square.github.io/crossfilter/">Crossfilter</a> project
+Dataset size depends on the complexity of the data. <a href="http://square.github.io/crossfilter/">Crossfilter</a> project
 for example works with circa 230.000 datapoints. This is a very large number that is only feasible because of the low
 complexity of the data (five datapoints per entry).
+
+Simple line plots and continuous plots can be generally more robust,
+because we can force lower resolution in case of performance issues without deforming the data. We cannot remove datapoints
+from scatter plots or other discrete types.
+
+Geographical visualisations are one example of usage of large datasets. The performance issues are generally resolved by scaling,
+meaning we first see lower resolution overview, but it is possible to zoom in in a particular point and render higher resolution
+data. The same case can be astronomical data, physics measurements or AI visualisations such as neural network training.
+
+I would not reduce the size of the assignment data, I consider it a small dataset.
 
 <h3></h3>
 
