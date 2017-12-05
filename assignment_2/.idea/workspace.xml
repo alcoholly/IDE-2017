@@ -14,21 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-735">
-              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="125" column="110" lean-forward="true" selection-start-line="125" selection-start-column="110" selection-end-line="125" selection-end-column="110" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="script.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="78" column="51" lean-forward="false" selection-start-line="78" selection-start-column="51" selection-end-line="78" selection-end-column="51" />
+            <state relative-caret-position="3244">
+              <caret line="221" column="12" lean-forward="false" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -82,8 +82,8 @@
         <option value="$PROJECT_DIR$/station_normalized.csv" />
         <option value="$PROJECT_DIR$/station.txt" />
         <option value="$PROJECT_DIR$/decade_means.csv" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/script.js" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -156,12 +156,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1512128756794</updated>
-      <workItem from="1512128758247" duration="56401000" />
+      <workItem from="1512128758247" duration="58165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56401000" />
+    <option name="totallyTimeSpent" value="58165000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -220,14 +220,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-735">
-          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/decade_means.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -246,11 +238,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="78" column="51" lean-forward="false" selection-start-line="78" selection-start-column="51" selection-end-line="78" selection-end-column="51" />
+        <state relative-caret-position="3244">
+          <caret line="221" column="12" lean-forward="false" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="12" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="125" column="110" lean-forward="true" selection-start-line="125" selection-start-column="110" selection-end-line="125" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
