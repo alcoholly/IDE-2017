@@ -166,9 +166,19 @@ is better at just showing relative differences between decades.<br>
 We also considered adding a regression line to the first plot but didn't manage due to lack of time.
 
 <h3>Question 3 (Jiri)</h3>
-Dataset size depends on the complexity of the data <a href="http://square.github.io/crossfilter/">Crossfilter</a> project
+Dataset size depends on the complexity of the data. <a href="http://square.github.io/crossfilter/">Crossfilter</a> project
 for example works with circa 230.000 datapoints. This is a very large number that is only feasible because of the low
 complexity of the data (five datapoints per entry).
+
+Simple line plots and continuous plots can be generally more robust,
+because we can force lower resolution in case of performance issues without deforming the data. We cannot remove datapoints
+from scatter plots or other discrete types.
+
+Geographical visualisations are one example of usage of large datasets. The performance issues are generally resolved by scaling,
+meaning we first see lower resolution overview, but it is possible to zoom in in a particular point and render higher resolution
+data. The same case can be astronomical data, physics measurements or AI visualisations such as neural network training.
+
+I would not reduce the size of the assignment data, I consider it a small dataset.
 
 <h3></h3>
 
