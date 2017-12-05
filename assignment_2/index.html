@@ -94,7 +94,7 @@
 
 <h2>Motivation, method, conclusions</h2>
 
-We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The dataset that we downloaded contains surface temperature data for each month of every year from 1880-2017 arranged in (12) columns. A 13th column contains the average temperature (over all months) for each year. We decided to work with the average year temperature as it captures the central tendency of the data while allowing for a compact visualization of the observations and a direct comparison between different years.
+We chose to work with temperature data from St. Petersburg station <a href="https://data.giss.nasa.gov/cgi-bin/gistemp/show_station.cgi?id=638260630000&dt=1&ds=14"> data</a>.<br> The dataset that we downloaded contains surface temperature data for each month and each season of every year from 1880-2017 arranged in columns. The last column contains the average temperature (over all months) for each year. We decided to work with the average year temperature as it captures the central tendency of the data while allowing for a compact visualization of the observations and a direct comparison between different years.
 <br><br>
 With respect to data preparation -since the dataset that we downloaded was not in proper csv format (the entries are separated by multiple spaces, not comma or tab)-
 we normalized it with sed:
