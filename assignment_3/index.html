@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project 1</title>
+    <style type="text/css">
+        h1 {
+            color:white;
+            text-align: center;
+
+        }
+
+        body {
+            background-color: black;
+        }
+
+
+        div {
+            color: white;
+            position:relative;
+            top: 300px;
+            text-align: center;"
+
+        }
+
+
+        #secondImg{
+            position: absolute;
+            top: 350px;
+
+            left: 390px;
+
+
+        }
+        body{
+          width: 1200px;
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function(){
+            var image2 = document.createElement("img");
+            image2.setAttribute("src", "http://wwwcdn.skyandtelescope.com/wp-content/uploads/TwelvePlanets_m.jpg");
+            image2.setAttribute("title", "Planets");
+            image2.setAttribute("id", "secondImg");
+            document.body.appendChild(image2);
+
+        }
+
+    </script>
+</head>
+<body>
+<h1>Project 1</h1>
+
+<center><img id=firstImg src="http://www.uzinggo.com/images/lessons/teacherguides/US370301CD_1.png"  title="Planet Orbits"></center>
+<div>
+    <h2>Links to interactive visualisations</h2>
+    <ul>
+        <li> <a href="http://p.migdal.pl/wizualizacja-wolnych-lektur/polish_books_themes.html">Interactive Graph of Polish Books Themes</a>
+        </li>
+        <li> <a href="https://podio.com/site/creative-routines"> The Daily Routines of Famous Creative People </a>
+        </li>
+    </ul>
+</div>
+<div>
+    <h2 >Positive and Negative Aspects about the 2 Visualisations </h2>
+    <center><h3 >First visualisation:</h3>
+    <p style="max-width:40%;">This visualisation use an interactive graph to present  themes of Polish books (nodes) and how they are related to each other, connected via links that indicate a frequent co-occurence between the themes. </p>
+    <h4 >Positive</h4>
+
+      <p style="max-width:40%;">
+        It is easy to estimate the magnitude of co-occurences for each theme by looking at the sizes of the nodes, with an accompanying legend on the side showing what minimum (200) and maximum (2000) occurrences look like. This element also allows us to easily distinguish the hubs of the graph (Love, Woman, Death). The legend on the side that shows the correspondence of node colors to literature genres, adds an extra level of information to the graph in a compact way.
+        While at first it’s a bit difficult to see how the themes are actually related, with lots of links going everywhere, when hovering over one node its links and its neighbors get highlighted, making it easy to see the connections of a theme you are interested in.
+      </p>
+    </center>
+    <h4>Negative</h4>
+    <center>
+      <p style="max-width:40%;">
+        As mentioned before, there are many links in the graph, and it looks a bit cluttered. The edges between the themes do not actually add any value to the visualization (in its current form) when the nodes aren’t hovered; everything would look clearer and cleaner if the links only appeared when the user hovers over a node. Moreover, each time the page is loaded, the graph is randomly positioned, and sometimes it overlaps with the legend to the right or ends up outside the box where it is presented, making it difficult or impossible to read some of the text. There are also areas in the graph where too many nodes are positioned in the same space, which also causes the node labels to overlap.
+         Lastly, when the color of a node is mixed (i.e. when the theme appears across different genres of literature) it is not always easy to estimate the proportion of the basic colors it consists of and thus, it is difficult to understand how some of the presented themes are distributed over different genres of literature.
+      </p>
+    </center>
+    <h3 >Second visualisation:</h3><center>
+    <p style="max-width:40%;">This visualisation aims to present how famous creative people structure their day based on 6 categories of daily routines- namely SLEEP, CREATIVE WORK, DAY JOB/ADMIN, FOOD/LEISURE, EXERCISE and OTHER. For each individual a 24h timeline is structured into consecutively aligned colored bars representing the above mentioned activities.</p>
+    <h4>Positive</h4>
+
+      <p style="max-width:40%;">
+        The visualisation allows for accessing multiple levels of details ( e.g. by hovering over each of the bars we can get more specific information the daily routines of an individual)
+        The design also supports filtering the activity categories so we can both have a broad overview of all the categorical data as well as access and compare selected groups or individual categories separately. Lastly, the use of the color is effective since prominent colors are used to highlight the categories that are most likely to be of interest to the user (e.g. “creative work” category is represented using red) while a more neutral color (gray) is used for the less well-defined category “other”.
+
+      </p>
+      <br>
+
+      <img src="https://raw.githubusercontent.com/alcoholly/IDE-2017/master/plot2.png" width="50%" height="50%">
+    </center>
+    <h4>Negative</h4>
+    <center>
+      <p style="max-width:40%;">
+        The data for each category are fragmented over time and there is no option offered to aggregate them per category for each individual.
+        Thus, it is difficult to form a clear idea about the total amount of time each individual spends on a specific activity and compare the differences between different individuals (see image above). Another negative aspect is that it is not easy to compare the daily routines of people that are not positioned close to each other in the row index. For example while we can easily compare the daily routines between Haruki Murakami and Voltaire or Benjamin Franklin, it is quite difficult to compare the routines of Honore de Balzac and Pablo Picasso.
+      </p>
+    </center>
+    <h2 > Individual part: Describe an interactive visualization
+        that you would like to be able to build after this course has finished </h2>
+    <h3> Ioanna Arkoudi:</h3>
+    <center>
+    <p style="max-width:40%;"> This semester I have taken Interactive Graphs & Interactions as an elective course in DTU and I am currently working on a project that aims to explore the musical preferences of people around the world
+    using data from Last.fm (more information about this project are available <a href="https://www.youtube.com/watch?v=Ko8XdscIJEg"> here</a>). After Interactive Data Exploration finishes, I would
+    like to be able to use the collected data and create an interactive graph with the set of the most popular artists around the world as nodes. The edges between the nodes are added by thresholding a similarity score between the artists - that is also provided by Last.fm. A basic description of the interactive visualisation I would like to implement is provided below:
+        <ol> <li>The visualisation should include the graph (nodes and edges) with the sizes of the nodes corresponding to their degree - so that the user gets an idea about the significance of each node in the graph and is able to easily spot the hubs. Next to the graph, there should be a section that contains basic stats about the graph (number of nodes, number of edges, average degree etc).</li>
+        <li>When the user clicks on a node, then its connections to other nodes are highlighted. The content of the section that appears next to the graph also changes to include basic information about the selected node (degree,  betweenness centrality etc). </li>
+        <li>I would additionally like to incorporate an on-off "community mode". This mode should be off by default but when the user activates it, then the nodes of each community are colorized differently to indicate the partition of the network. The section next to the graph now should contain basic information about the community partition of the graph (Modularity score, number of communities, number of nodes in each community etc).</li>
+        <li>Lastly, when the user clicks on a node of a community then this community is highlighted and the informative section next to the graph changes again to contain information about the selected community (number of nodes, number of inside links, number of outside links to other communities).</li>
+    </ol>
+    </p></center>
+    <h3> Jesper Näsman:</h3>
+    <center>
+    <p style="max-width:40%;"> I would like do something like using data from <a href="http://politietsregisterblade.dk/">Københavns Stadsarkiv</a> which contains information
+    about people who lived in Copenhagen some 100 years ago, along with their relations and professions and all the locations where they lived.
+    Addresses in this database also contain coordinates, and it could be interesting to plot data based on neighborhoods of Copenhagen, such as
+    the most common professions per neighborhood or how big portion of people in each neighborhood had children, in a similar fashion as
+    <a href="https://www.nytimes.com/interactive/2016/12/26/upshot/duck-dynasty-vs-modern-family-television-maps.html">
+    this</a>.</p></center>
+    <h3> Jiří Brázdil:</h3>
+      <center>
+        <p style="max-width:40%;">
+          At my job I work with a dataset of foods which contains tags for each ingredient, information about the chemical compounds present (circa 1500) and
+          their semantic representation gathered through word2vec algorithm (150 dimensions). It is challenging to create a graphical representation that captures
+          the important data. I would like to find clusters of ingredients in the semantic space based on their tags and plot these in a plane or 3d, with an
+          option of including the chemical relationships as well. <a href="https://www.nature.com/articles/srep00196/figures/2"> Here </a> is an example of a chemical flavour map from a paper "Flavor network and the principles of food pairing" from Prof.
+          Sebastian Ahnert et al.
+        </p>
+      </center>
+</div>
+
+</body>
+
+</html>
