@@ -41,43 +41,56 @@
                     "children": [
                         {
                             "name": "Donald Trump Jr.",
-                            "partner": "Vanessa Trump",
-                            "children": [
+                            "partners": [
                                 {
-                                    "name": "Kai Madison"
-                                },
-                                {
-                                    "name": "Donald III"
-                                },
-                                {
-                                    "name": "Chloe Sophia"
-                                },
-                                {
-                                    "name": "Tristan Milos"
-                                },
-                                {
-                                    "name": "Spencer Frederick"
+                                    "name": "Vanessa Trump",
+                                    "children": [
+                                        {
+                                            "name": "Kai Madison"
+                                        },
+                                        {
+                                            "name": "Donald III"
+                                        },
+                                        {
+                                            "name": "Chloe Sophia"
+                                        },
+                                        {
+                                            "name": "Tristan Milos"
+                                        },
+                                        {
+                                            "name": "Spencer Frederick"
+                                        }
+                                    ]
                                 }
                             ]
                         },
                         {
                             "name": "Ivanka Trump",
-                            "partner": "Jared Kushner",
-                            "children": [
+                            "partners": [
                                 {
-                                    "name": "Arabella Rose"
-                                },
-                                {
-                                    "name": "Joseph Frederick"
-                                },
-                                {
-                                    "name": "Theodore James"
+                                    "name": "Jared Kushner",
+                                    "children": [
+                                        {
+                                            "name": "Arabella Rose"
+                                        },
+                                        {
+                                            "name": "Joseph Frederick"
+                                        },
+                                        {
+                                            "name": "Theodore James"
+                                        }
+                                    ]
+
                                 }
                             ]
                         },
                         {
                             "name": "Eric Trump",
-                            "partner": "Lara Yunaska"
+                            "partners": [
+                                {
+                                    "name": "Lara Yunaska"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -127,13 +140,13 @@
     function update(source) {
 
         // Compute the new tree layout.
-        var nodes = tree.nodes(root).reverse(),
+        var nodes = tree.nodes(source).reverse(),
             links = tree.links(nodes);
 
         // Normalize for fixed-depth.
         nodes.forEach(function(d) { d.y = d.depth * 180; });
 
-        // Declare the nodesâ€¦
+        // Declare the nodes.
         var node = svg.selectAll("g.node")
             .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
@@ -156,7 +169,7 @@
             .text(function(d) { return d.name; })
             .style("fill-opacity", 1);
 
-        // Declare the linksâ€¦
+        // Declare the links.
         var link = svg.selectAll("path.link")
             .data(links, function(d) { return d.target.id; });
 
