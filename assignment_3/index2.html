@@ -35,38 +35,47 @@
     var treeData = [
         {
             "name": "Donald Trump",
+            'born': '1946',
             "type": 'red',
             "children": [
                 {
                     "name": 'Ivana Trump',
+                    'born': '1949',
                     "type": 'red',
                     "children": [
                         {
                             "name": "Donald Trump Jr.",
+                            'born': '1977',
                             "type": 'grey',
                             "children": [
                                 {
                                     "name": "Vanessa Trump",
+                                    'born': '1977',
                                     "type": 'red',
                                     "children": [
                                         {
                                             "name": "Kai Madison",
+                                            'born': '2008',
                                             "type": 'grey',
                                         },
                                         {
                                             "name": "Donald III",
+                                            'born': '2009',
                                             "type": 'grey',
                                         },
                                         {
                                             "name": "Chloe Sophia",
+                                            'born': '2005',
                                             "type": 'grey',
                                         },
                                         {
                                             "name": "Tristan Milos",
+                                            'born': '2012',
                                             "type": 'grey',
                                         },
                                         {
                                             "name": "Spencer Frederick",
+                                            'born': '2013',
                                             "type": 'grey',
                                         }
                                     ]
@@ -75,20 +84,28 @@
                         },
                         {
                             "name": "Ivanka Trump",
+                            'born': '1981',
                             "type": 'grey',
                             "children": [
                                 {
                                     "name": "Jared Kushner",
+                                    'born': '1982',
                                     "type": 'red',
                                     "children": [
                                         {
-                                            "name": "Arabella Rose"
+                                            "name": "Arabella Rose",
+                                            'born': '2012',
+                                            "type": 'grey',
                                         },
                                         {
-                                            "name": "Joseph Frederick"
+                                            "name": "Joseph Frederick",
+                                            'born': '2014',
+                                            "type": 'grey',
                                         },
                                         {
-                                            "name": "Theodore James"
+                                            "name": "Theodore James",
+                                            'born': '2016',
+                                            "type": 'grey',
                                         }
                                     ]
 
@@ -97,10 +114,12 @@
                         },
                         {
                             "name": "Eric Trump",
+                            'born': '1984',
                             "type": 'grey',
                             "children": [
                                 {
                                     "name": "Lara Yunaska",
+                                    'born': '1982',
                                     "type": 'red',
                                 }
                             ]
@@ -109,19 +128,25 @@
                 },
                 {
                     "name": "Marla Maples",
+                    'born': '1963',
                     "type": 'red',
                     "children": [
                         {
-                            "name": "Tiffany Trump"
+                            "name": "Tiffany Trump",
+                            'born': '1993',
+                            "type": 'grey',
                         }
                     ]
                 },
                 {
                     "name": "Melanie Trump",
+                    'born': '1970',
                     "type": 'red',
                     "children": [
                         {
-                            "name": "Baron Trump"
+                            "name": "Baron Trump",
+                            'born': '2006',
+                            "type": 'grey',
                         }
                     ]
                 }
@@ -169,7 +194,21 @@
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
             .attr("transform", function(d) {
-                return "translate(" + d.y + "," + d.x + ")"; });
+                return "translate(" + d.y + "," + d.x + ")"; })
+            .on("mouseover", function(d) {
+                var g = d3.select(this); // The node
+                // The class is used to remove the additional text later
+                var info = g.append('text')
+                    .classed('info', true)
+                    .attr('x', function(d) { return d.children || d._children ? 0 : 110; })
+                    .attr('y', function(d) { return d.children || d._children ? -30 : 0; })
+                    .attr('text-anchor', function(d) { return d.children || d._children ? "middle" : "start"; })
+                    .text(d.born);
+            })
+            .on("mouseout", function() {
+                // Remove the info text on mouse out.
+                d3.select(this).select('text.info').remove();
+            });
 
         nodeEnter.append("circle")
             .attr("r", 10)
@@ -178,15 +217,12 @@
 
         nodeEnter.append("text")
             .attr("x", function(d) {
-                if (d.type == 'red') { return 0 }
                 return d.children || d._children ? 0 : 13; })
             .attr("y", function(d) {
-                if (d.type == 'red') { return -20 }
                 return d.children || d._children ? -20 : 0;
             })
             .attr("dy", ".35em")
             .attr("text-anchor", function(d) {
-                if (d.type == 'red') { return 'middle' }
                 return d.children || d._children ? "middle" : "start";
             })
             .text(function(d) { return d.name; })
