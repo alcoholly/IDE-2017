@@ -2,85 +2,57 @@
 
 d3.select(window).on('load', init);
 
-var handSvg;
 
 function init() {
 function getHandCoordinates(data){
   coords = []
-  for (var i = 0; i < 55; i++){
-    coords[i] = {'x': data[i], 'y': data[i+56]};
+  for (var i = 0; i < 56; i++){
+    coords[i] = {'x1': data[i], 'y1': data[i+56], 'x2': data[i+1], 'y2': data[i+57]};
   }
   return coords;
 }
 
 
-function drawHand(index){
-  handLines.selectAll('line').data(hand)
-  .transition()
-  .duration(500)
-  .ease("elastic")
-  .each("start", function(){
-    d3.select(this)
-    .attr('stroke-width', lineWidth * 2)
-    .attr("stroke", complemColor);})
-    .attr('x1', function(d, i){
-        if(i > 0){
-            return xScale(hands[currentHandIndex][i-1].x);
-        }
-        else{
-            return xScale(d.x);
-        }
-        })
-    .attr('y1', function(d, i){
-        if(i > 0){
-            return yScale(hands[currentHandIndex][i-1].y);
-        }
-        else{
-            return yScale(d.y);
-        }
-    })
-    .attr('x2', function(d){ return xScale(d.x)})
-    .attr('y2', function(d){ return yScale(d.y)
-    })
-    .each('end', function(){
-        d3.select(this)
-        .transition()
-        .duration(100)
-        .attr('stroke-width', lineWidth)
-        .attr('stroke', secondaryColor)}
-    );
 
-    handCircles.selectAll('circle').data(hand)
-    .transition()
-    .duration(500)
-    .ease("elastic")
-    .each("start", function(){d3.select(this)
-            .attr('r', cirleRad*2)
-            .attr("fill", complemColor);})
-    .attr('cx', function(d){return xScale(d.x); })
-    .attr('cy', function(d){return yScale(d.y); })
-    .each('end', function(){
-        d3.select(this)
-        .transition()
-        .duration(100)
-        .attr('fill', secondaryColor)
-        .attr('r', '3')
-        });
+function draw(data){}
+
+
+// Some inspiration taken from https://bl.ocks.org/dimitardanailov/6f0a451d4457b9fa7bf6e0dddcd0f468
+
+function drawSmallHands(){
+  d3.text('hands.csv', function(text) {
+      var data = d3.csvParseRows(text);
+
+      var drawHandLine = d3.line()
+        .x(function(d) { return d.x1*55; })
+        .y(function(d) { return d.y1*55; })
+
+      data.forEach(function(d){
+        hand = getHandCoordinates(d)
+
+        d3.select("#plotarea").append('div').append('svg')
+          .attr('class', 'lilbox')
+          .selectAll("path")
+          .data(hand)
+          .enter()
+          .append("path")
+          .attr("fill", 'beige')
+          .attr("d", drawHandLine(hand))
+          .attr("stroke", "black")
+          .attr("stroke-width", 0.2)
+          .attr('transform', "scale(1.05)")
+
+
+      });
+
+
+  });
 }
 
-drawHand(0);
+drawSmallHands();
 
+var mydata = [[10,4,9,3],[9,3,8,3],[8,3,7,2],[7,2,7,1],[7,1,6,1],[6,1,6,2],[6,2,7,3],[7,3,7,4],[7,4,6,4]]
 
 
 
 }
-
-d3.text('hands.csv', function(text) {
-    var data = d3.csvParseRows(text);
-    hand = getHandCoordinates(data[0])
-    hand.forEach(function(d){
-
-
-    });
-
-});
