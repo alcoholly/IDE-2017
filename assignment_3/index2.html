@@ -7,6 +7,12 @@
 
     <style>
 
+        body{
+            width:1000px;
+            margin:auto;
+            font-family:Georgia, serif;
+        }
+
         .node circle {
             fill: #fff;
             stroke: steelblue;
@@ -21,7 +27,7 @@
             stroke-width: 2px;
         }
 
-        h1 {
+        .title {
             text-align: center;
         }
 
@@ -38,16 +44,16 @@
 
 <body>
 
-<h1 >Trump Family Tree</h1>
+<h1 class="title">Trump Family Tree</h1>
 <br>
 <div class="legend">
     <p class="labels"> <svg height="25" width="25">
         <line x1="0" y1="0" x2="200" y2="200" stroke="red"/>
-    </svg> Parents
+    </svg> Partner
         </p>
     <p class="labels"> <svg height="25" width="25">
         <line x1="0" y1="0" x2="200" y2="200" stroke="steelblue" />
-    </svg> Children
+    </svg> Child
 
         </p>
 
@@ -222,7 +228,8 @@
             .attr("transform", function(d) {
                 return "translate(" + d.y + "," + d.x + ")"; })
             .on("mouseover", function(d) {
-                var g = d3.select(this); // The node
+                var g = d3.select(this)//the node
+                    .style("fill", "green");
                 // The class is used to remove the additional text later
                 var info = g.append('text')
                     .classed('info', true)
@@ -233,6 +240,8 @@
             })
             .on("mouseout", function() {
                 // Remove the info text on mouse out.
+                d3.select(this)//the node
+                    .style("fill", "black");
                 d3.select(this).select('text.info').remove();
             });
 
@@ -267,6 +276,20 @@
     }
 
 </script>
+
+<h2 class="title">Method- Choices</h2>
+<br>
+
+Add a brief text section to your page where 1) motivate your choices (e.g. choice of color/marks, overall layout etc), and 2) Suggest how/if the visualization could
+be improved by adding interactive elements.Add a brief text section to your page where 1) motivate your choices (e.g. choice of color/marks, overall layout etc),
+and 2) Suggest how/if the visualization could be improved by adding interactive elements.
+I rearranged the family so that partners are the same as children in the JSON and instead added an attribute to each node that defines the color.
+I got the years from here, lol
+http://static4.businessinsider.com/image/55d62d649dd7cc1a008b4cd3-1200-1749/bi-graphics_donald-trump-family-tree.png
+and here https://www.aol.com/article/news/2017/03/20/how-many-grandkids-does-president-trump-have-look-at-next-generation/21903551/
+Here's the code
+http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html
+<h2 class="title">How could the visualization be improved by adding interactive elements.</h2>
 
 </body>
 </html>
