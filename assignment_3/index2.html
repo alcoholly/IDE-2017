@@ -21,11 +21,37 @@
             stroke-width: 2px;
         }
 
+        h1 {
+            text-align: center;
+        }
+
+        .legend{
+            margin-left:800px;
+        }
+
+        .labels{
+            font: 13px sans-serif;
+        }
     </style>
 
 </head>
 
 <body>
+
+<h1 >Trump Family Tree</h1>
+<br>
+<div class="legend">
+    <p class="labels"> <svg height="25" width="25">
+        <line x1="0" y1="0" x2="200" y2="200" stroke="red"/>
+    </svg> Parents
+        </p>
+    <p class="labels"> <svg height="25" width="25">
+        <line x1="0" y1="0" x2="200" y2="200" stroke="steelblue" />
+    </svg> Children
+
+        </p>
+
+</div>
 
 <!-- load the d3.js library -->
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -46,7 +72,7 @@
                         {
                             "name": "Donald Trump Jr.",
                             'born': '1977',
-                            "type": 'grey',
+                            "type": 'steelblue',
                             "children": [
                                 {
                                     "name": "Vanessa Trump",
@@ -56,27 +82,27 @@
                                         {
                                             "name": "Kai Madison",
                                             'born': '2008',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Donald III",
                                             'born': '2009',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Chloe Sophia",
                                             'born': '2005',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Tristan Milos",
                                             'born': '2012',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Spencer Frederick",
                                             'born': '2013',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         }
                                     ]
                                 }
@@ -85,7 +111,7 @@
                         {
                             "name": "Ivanka Trump",
                             'born': '1981',
-                            "type": 'grey',
+                            "type": 'steelblue',
                             "children": [
                                 {
                                     "name": "Jared Kushner",
@@ -95,17 +121,17 @@
                                         {
                                             "name": "Arabella Rose",
                                             'born': '2012',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Joseph Frederick",
                                             'born': '2014',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         },
                                         {
                                             "name": "Theodore James",
                                             'born': '2016',
-                                            "type": 'grey',
+                                            "type": 'steelblue',
                                         }
                                     ]
 
@@ -115,7 +141,7 @@
                         {
                             "name": "Eric Trump",
                             'born': '1984',
-                            "type": 'grey',
+                            "type": 'steelblue',
                             "children": [
                                 {
                                     "name": "Lara Yunaska",
@@ -134,7 +160,7 @@
                         {
                             "name": "Tiffany Trump",
                             'born': '1993',
-                            "type": 'grey',
+                            "type": 'steelblue',
                         }
                     ]
                 },
@@ -146,7 +172,7 @@
                         {
                             "name": "Baron Trump",
                             'born': '2006',
-                            "type": 'grey',
+                            "type": 'steelblue',
                         }
                     ]
                 }
@@ -243,4 +269,5 @@
 </script>
 
 </body>
+
 </html>
