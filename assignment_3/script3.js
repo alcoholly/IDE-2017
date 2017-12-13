@@ -12,10 +12,10 @@ function init() {
     var tree = d3.tree()
         .size([height, width]);
 
-    var diagonal = d3.svg.diagonal()
+    /*var diagonal = d3.svg.diagonal()
         .projection(function (d) {
             return [d.y, d.x];
-        });
+        });*/
 
     var svg = d3.select("body").append("svg")
         .attr("width", width + margin.right + margin.left)
