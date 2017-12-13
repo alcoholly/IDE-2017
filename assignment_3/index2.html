@@ -68,7 +68,7 @@
         {
             "name": "Donald Trump",
             'born': '1946',
-            "type": 'red',
+            "type": 'black',
             "children": [
                 {
                     "name": 'Ivana Trump',
@@ -247,7 +247,7 @@
 
         nodeEnter.append("circle")
             .attr("r", 10)
-            .style("stroke", function(d){ return d.type == 'red' ? 'red' : 'steelblue'; })
+            .style("stroke", function(d){ return d.type })
             .style("fill", "#fff");
 
         nodeEnter.append("text")
