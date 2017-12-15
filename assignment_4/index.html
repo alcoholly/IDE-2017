@@ -6,6 +6,96 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
+  <style>
+  html {
+    margin:    0 auto;
+    max-width: 1200px;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  }
+
+  #plotarea {
+    width:320px;
+    padding:2px;
+
+    float:left;
+
+  }
+
+
+  body{
+    width:100%;
+    background-color:#F8F8F8;
+    margin:0;
+  }
+
+  .small_hand_div{
+    cursor:pointer;
+  }
+
+  .line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+  }
+
+  .small_hand{
+    width:70px;
+    height:70px;
+    float:left;
+    border-radius:50%;
+    border: 1px solid black;
+  }
+  .small_hand:hover
+    /* from https://codepen.io/wifeo/pen/qzwkb */
+
+    {
+
+      opacity:0.95;
+
+      z-index: 2;
+      -webkit-transition: all 100ms ease-in;
+      -webkit-transform: scale(1.2);
+      -ms-transition: all 100ms ease-in;
+      -ms-transform: scale(1.2);
+      -moz-transition: all 100ms ease-in;
+      -moz-transform: scale(1.2);
+      transition: all 100ms ease-in;
+      transform: scale(1.2);
+    }
+
+  #big_hand{
+    width:500px;
+    height:500px;
+    float:left;
+  }
+
+  .gray_bg {
+    border: 1px solid red;
+  }
+
+  line {
+    stroke-width:0.5;
+    stroke:black;
+  }
+  #wrap{
+    width:100%;
+    height:730px;
+
+    margin: 0 auto;
+  }
+  #scatter{
+    float: left;
+    width:300px;
+  }
+  .individual{
+    width:600px;
+    height:1000px;
+    float:right;
+  }
+
+
+  </style>
+
   <body>
 
     <center>
@@ -21,7 +111,7 @@
     <div id="plotarea2"></div>
     <div class="individual">
       <h2>Description</h2>
-      The make it easier to use the PCA data, we modified the python script to output only the two first values along with x and y as the labels. 
+      The make it easier to use the PCA data, we modified the python script to output only the two first values along with x and y as the labels.
       <h2>Individual part</h2>
         <h3>Jesper</h3>
         I added a list containing every hand, and when a hand is clicked the corresponding data point in the PCA scatter plot becomes red and enlarged
