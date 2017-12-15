@@ -48,11 +48,11 @@
 <br>
 <div class="legend">
     <p class="labels"> <svg height="25" width="25">
-        <line x1="0" y1="0" x2="200" y2="200" stroke="red"/>
+        <line x1="0" y1="0" x2="200" y2="200" stroke="steelblue"/>
     </svg> Partner
         </p>
     <p class="labels"> <svg height="25" width="25">
-        <line x1="0" y1="0" x2="200" y2="200" stroke="steelblue" />
+        <line x1="0" y1="0" x2="200" y2="200" stroke="red" />
     </svg> Child
 
         </p>
@@ -73,42 +73,42 @@
                 {
                     "name": 'Ivana Trump',
                     'born': '1949',
-                    "type": 'red',
+                    "type": 'steelblue',
                     "children": [
                         {
                             "name": "Donald Trump Jr.",
                             'born': '1977',
-                            "type": 'steelblue',
+                            "type": 'red',
                             "children": [
                                 {
                                     "name": "Vanessa Trump",
                                     'born': '1977',
-                                    "type": 'red',
+                                    "type": 'steelblue',
                                     "children": [
                                         {
                                             "name": "Kai Madison",
                                             'born': '2008',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Donald III",
                                             'born': '2009',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Chloe Sophia",
                                             'born': '2005',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Tristan Milos",
                                             'born': '2012',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Spencer Frederick",
                                             'born': '2013',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         }
                                     ]
                                 }
@@ -117,27 +117,27 @@
                         {
                             "name": "Ivanka Trump",
                             'born': '1981',
-                            "type": 'steelblue',
+                            "type": 'red',
                             "children": [
                                 {
                                     "name": "Jared Kushner",
                                     'born': '1982',
-                                    "type": 'red',
+                                    "type": 'steelblue',
                                     "children": [
                                         {
                                             "name": "Arabella Rose",
                                             'born': '2012',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Joseph Frederick",
                                             'born': '2014',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         },
                                         {
                                             "name": "Theodore James",
                                             'born': '2016',
-                                            "type": 'steelblue',
+                                            "type": 'red',
                                         }
                                     ]
 
@@ -147,12 +147,12 @@
                         {
                             "name": "Eric Trump",
                             'born': '1984',
-                            "type": 'steelblue',
+                            "type": 'red',
                             "children": [
                                 {
                                     "name": "Lara Yunaska",
                                     'born': '1982',
-                                    "type": 'red',
+                                    "type": 'steelblue',
                                 }
                             ]
                         }
@@ -161,24 +161,24 @@
                 {
                     "name": "Marla Maples",
                     'born': '1963',
-                    "type": 'red',
+                    "type": 'steelblue',
                     "children": [
                         {
                             "name": "Tiffany Trump",
                             'born': '1993',
-                            "type": 'steelblue',
+                            "type": 'red',
                         }
                     ]
                 },
                 {
                     "name": "Melanie Trump",
                     'born': '1970',
-                    "type": 'red',
+                    "type": 'steelblue',
                     "children": [
                         {
                             "name": "Baron Trump",
                             'born': '2006',
-                            "type": 'steelblue',
+                            "type": 'red',
                         }
                     ]
                 }
@@ -236,7 +236,7 @@
                     .attr('x', function(d) { return d.children || d._children ? 0 : 110; })
                     .attr('y', function(d) { return d.children || d._children ? -30 : 0; })
                     .attr('text-anchor', function(d) { return d.children || d._children ? "middle" : "start"; })
-                    .text(d.born);
+                    .text('Birth: '+ d.born);
             })
             .on("mouseout", function() {
                 // Remove the info text on mouse out.
@@ -277,19 +277,29 @@
 
 </script>
 
-<h2 class="title">Method- Choices</h2>
+<h2 class="title">Method - Choices - Potential Improvements</h2>
 <br>
+In this project we worked with the data set of the family tree of the Trump family that was provided <a href= "https://wouterboomsma.github.io/ide2017/week49/trump_family.json"> here</a>.
+We modified the .json file by replacing the string “partners” with “children”, so that partners entries follow the same structure as children entries and can be appended in the tree in the same way.
+In order to be able to distinguish between partners and children we added an extra attribute to each node (“type”)  that defines its color.
+We decided to use black color for Donald Trump’s node (i.e. root node) in order to differentiate it from the rest of the nodes.
+All Donald Trump’s descendants are presented with red colored nodes while his partners (and his descendants’ partners) are presented with light-blue colored nodes.
+In the same way, the color of the links denotes the type of relationship between the nodes (light-blue for partner relationship and red for parent-child relationship).
+We chose to assign the most prominent color (red) to the most integral elements in a family tree, i.e. the successors.
+The color contrast between red and light-blue allows for a differential visualization so that the viewer can easily distinguish between the two types of nodes presented in the tree.
+Our visualization is based on <a href="http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html">this</a> example. It follows an hierarchical layout and  provides a good separation of
+the spouses <i>and</i> the generations as the nodes that represent the partners of the same person <i>and</i> the nodes that represent the children that belong to the same generation are vertically aligned.
+It is worth-noticing that the small size of our data set allows for using a horizontal tree layout- if we used a data set that contained information
+for more generations, then the visualization may not fit the browser’s width and using a vertical layout would be a more efficient choice.
+In order to incorporate some interactive content into our visualization, we attached one more attribute to each node (“born”) that conveys information about the birth year of the tree members
+(based on <a href="http://static4.businessinsider.com/image/55d62d649dd7cc1a008b4cd3-1200-1749/bi-graphics_donald-trump-family-tree.png">this</a> and
+<a href="https://www.aol.com/article/news/2017/03/20/how-many-grandkids-does-president-trump-have-look-at-next-generation/21903551/"> this</a> source). When we hover over a node, its name gets highlighted (with green color) and the respective birth year information appears.
+The position of the informational text was adjusted so that it does not overlap with the link lines when the node forms a connection. Regarding potential improvements, our visualization could display
+more information on hover such as the profession of the person or their birthplace. When hovering on partners nodes in specific we could also show additional information about the start year and
+the end year (if applicable) of each partnership/marriage. Another interactive element that could be included is opening a link to the respective wikipedia page when clicking on a node (preferably in a new tab).
+Including expandable-collapsible tree nodes could also improve our visualisation since they would
+allow for a more compact display of the information -according to the user's wishes- and they would make the exploration of the tree easier for the user.
 
-Add a brief text section to your page where 1) motivate your choices (e.g. choice of color/marks, overall layout etc), and 2) Suggest how/if the visualization could
-be improved by adding interactive elements.Add a brief text section to your page where 1) motivate your choices (e.g. choice of color/marks, overall layout etc),
-and 2) Suggest how/if the visualization could be improved by adding interactive elements.
-I rearranged the family so that partners are the same as children in the JSON and instead added an attribute to each node that defines the color.
-I got the years from here, lol
-http://static4.businessinsider.com/image/55d62d649dd7cc1a008b4cd3-1200-1749/bi-graphics_donald-trump-family-tree.png
-and here https://www.aol.com/article/news/2017/03/20/how-many-grandkids-does-president-trump-have-look-at-next-generation/21903551/
-Here's the code
-http://www.d3noob.org/2014/01/tree-diagrams-in-d3js_11.html
-<h2 class="title">How could the visualization be improved by adding interactive elements.</h2>
 
 </body>
 </html>
