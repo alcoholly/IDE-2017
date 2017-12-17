@@ -56,6 +56,13 @@ function drawBigHand(index){
   });
 }
 
+var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "x: <span style='color:red'>" + d.x + "</span><br>y: <span style='color:red'>" + d.y + "</span>";
+  })
+
 function scatterPlot(){
   var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 760 - margin.left - margin.right,
@@ -78,7 +85,7 @@ function scatterPlot(){
         .append("g")
         .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
-
+    svg.call(tip);
     // Get the data
     d3.csv("hands_pca.csv", function(error, data) {
       if (error) throw error;
@@ -90,8 +97,11 @@ function scatterPlot(){
       });
 
       // Scale the range of the data
-      x.domain(d3.extent(data, function(d) { return d.x; }));
-      y.domain([0, d3.max(data, function(d) { return d.y; })]);
+      x.domain([d3.min(data, function(d){ return +d.x;})-0.1, d3.max(data, function(d) {return +d.x;})]);
+      y.domain([d3.min(data, function(d){ return +d.y;})-0.1, d3.max(data, function(d) {return +d.y;})]);
+
+      //x.domain(d3.extent(data, function(d) { return d.x; }));
+      //y.domain([0, d3.max(data, function(d) { return d.y; })]);
 
       // Add the valueline path.
       svg.append("path")
@@ -109,6 +119,8 @@ function scatterPlot(){
           .attr('data-id', 'something')
           .attr("cx", function(d) { return x(d.x); })
           .attr("cy", function(d) { return y(d.y); })
+          .on('mouseover', tip.show)
+          .on('mouseout', tip.hide)
           .style("fill", 'black')
           .each(function (d, i) {
             d3.select(this).attr('data-id', i);
