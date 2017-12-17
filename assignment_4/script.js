@@ -97,8 +97,8 @@ function scatterPlot(){
       });
 
       // Scale the range of the data
-      x.domain([d3.min(data, function(d){ return +d.x;})-0.1, d3.max(data, function(d) {return +d.x;})]);
-      y.domain([d3.min(data, function(d){ return +d.y;})-0.1, d3.max(data, function(d) {return +d.y;})]);
+      x.domain([d3.min(data, function(d){ return +d.x;})-0.1, d3.max(data, function(d) {return +d.x;})+0.1]);
+      y.domain([d3.min(data, function(d){ return +d.y;})-0.1, d3.max(data, function(d) {return +d.y;})+0.1]);
 
       //x.domain(d3.extent(data, function(d) { return d.x; }));
       //y.domain([0, d3.max(data, function(d) { return d.y; })]);
