@@ -181,15 +181,15 @@
       PCA is a statistical procedure that allows for dimensionality reduction in high dimensional data sets while preserving the important information in the data.
       The first principal components explain most of the variation in the data and thus, PCA allows us to summarize and and to visualize the information of high-dimensional data
       based on only few variables /dimensions. For the purposes of this project we present 2D
-      visualizations of the data, hence the python script was modified to output only the values of the first two principal components along with x and y as the labels.<br>
+      visualizations of the data, hence the python script was modified to output only the values of <i>the first two principal components</i> along with <i>x</i> and <i>y</i> as the labels.<br>
       <h2>Methods</h2>
-      When the user either clicks on one of the small version of the hands-outlines (top-left panel), or clicks on one of the points in the PCA plot (right panel) the larger version
-      of the hand outline (bottom-left panel) is updated and the corresponding hand outline is shown. Moreover, by clicking on one of the small hands-outlines the corresponding point in the scatterplot
+      When the user either clicks on one of the small version of the hands outlines (top-left panel) or on one of the points in the PCA plot (right panel), then the larger version
+      of the outline (bottom-left panel) is updated and the corresponding hand outline is shown. Moreover, by clicking on one of the small hands-outlines the corresponding point in the scatterplot
       is highlighted so that the user can easily map between the hand outlines and their corresponding PCA projections. Lastly, the user has the option to hover over a point in the scatterplot and have a
       small box display its respective PCA values.<br>
       <h2>Results and Conclusions</h2>
       The 2-panel visualisation and the mapping between the 2 types of representation allows us to directly compare the geometric representations of the hands to their lower dimensional analogues.
-      We can observe that the datapoints of similar postures are clustered closely together while distant datapoints suggest that their respective hands outlines are quite different.
+      We can observe that the datapoints of similar postures are clustered closely together while distant datapoints suggest that their respective outlines are quite different.
       If we try to interpret what type of differences each component captures we can notice that a lower x value -the first PCA dimension that accounts for largest possible variance in the data-
       generally corresponds to more separated fingers. Taking into account the bottom-left datapoint that has the second-lowest x value (~ -0.42) <i>while</i> the index, the ring finger and the small finger
       are positioned closely to each other, we could rephrase this observation by saying that lower x values are associated with <i> higher distance between the two outermost fingers</i>.
