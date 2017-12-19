@@ -1,72 +1,93 @@
 // Some inspiration taken from https://bl.ocks.org/dimitardanailov/6f0a451d4457b9fa7bf6e0dddcd0f468
-function drawSmallHands(){
-  d3.text('hands.csv', function(text) {
-      var data = d3.csvParseRows(text);
 
-      var drawHandLine = d3.line()
-        .x(function(d) { return d.x1*55; })
-        .y(function(d) { return d.y1*55; })
-        .curve(d3.curveBasis);
 
-      data.forEach(function(d, i){
-        hand = getHandCoordinates(d)
+function drawSmallHands() {
 
-        d3.select("#plotarea").append('div')
-          .attr('class', 'small_hand_div')
-          .attr('data-id', i)
-          .append('svg')
-          .attr('class', 'small_hand')
-          .selectAll("path")
-          .data(hand)
-          .enter()
-          .append("path")
-          .attr("fill", 'beige')
-          .attr("d", drawHandLine(hand))
-          .attr("stroke", "black")
-          .attr("stroke-width", 0.1)
-          .attr('transform', "scale(1.05)")
-      });
-  });
+    d3.text('hands.csv', function (text) {
+        var data = d3.csvParseRows(text);
+
+        var drawHandLine = d3.line()
+            .x(function (d) {
+                return d.x1 * 55;
+            })
+            .y(function (d) {
+                return d.y1 * 55;
+            })
+            .curve(d3.curveBasis);
+
+        data.forEach(function (d, i) {
+            hand = getHandCoordinates(d);
+
+            d3.select("#plotarea").append('div')
+                .attr('class', 'small_hand_div')
+                .attr('data-id', i)
+                .append('svg')
+                .attr('class', 'small_hand')
+                .selectAll("path")
+                .data(hand)
+                .enter()
+                .append("path")
+                .attr("fill", 'beige')
+                .attr("d", drawHandLine(hand))
+                .attr("stroke", "black")
+                .attr("stroke-width", 0.1)
+                .attr('transform', "scale(1.05)")
+        });
+    });
 }
 
-function drawBigHand(index){
-  d3.text('hands.csv', function(text) {
+function drawBigHand(index) {
 
-      var data = d3.csvParseRows(text);
+    if(selected.length == 1) {
+        index = selected[0];
+    }
 
-      var drawHandLine = d3.line()
-        .x(function(d) { return d.x1*350; })
-        .y(function(d) { return d.y1*350; })
-        .curve(d3.curveBasis);
+    else {
+        d3.select("#big_hand").remove();
+        return;
+    }
+
+    d3.text('hands.csv', function (text) {
+
+        var data = d3.csvParseRows(text);
+
+        var drawHandLine = d3.line()
+            .x(function (d) {
+                return d.x1 * 350;
+            })
+            .y(function (d) {
+                return d.y1 * 350;
+            })
+            .curve(d3.curveBasis);
 
         hand = getHandCoordinates(data[index])
 
         d3.select("#big_hand").remove();
         d3.select("#plotarea2").append('svg')
-          .attr('id', 'big_hand')
-          .selectAll("path")
-          .data(hand)
-          .enter()
-          .append("path")
-          .attr("fill", 'beige')
-          .attr("d", drawHandLine(hand))
-          .attr("stroke", "black")
-          .attr("stroke-width", 0.1)
-          .attr('transform', "scale(1.05)")
-  });
+            .attr('id', 'big_hand')
+            .selectAll("path")
+            .data(hand)
+            .enter()
+            .append("path")
+            .attr("fill", 'beige')
+            .attr("d", drawHandLine(hand))
+            .attr("stroke", "black")
+            .attr("stroke-width", 0.1)
+            .attr('transform', "scale(1.05)")
+    });
 }
 
 var tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .html(function(d) {
-    return "x: <span style='color:red'>" + d.x + "</span><br>y: <span style='color:red'>" + d.y + "</span>";
-  })
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function (d) {
+        return "x: <span style='color:red'>" + d.x + "</span><br>y: <span style='color:red'>" + d.y + "</span>";
+    })
 
-function scatterPlot(){
-  var margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = 760 - margin.left - margin.right,
-    height = 700 - margin.top - margin.bottom;
+function scatterPlot() {
+    var margin = {top: 20, right: 20, bottom: 30, left: 50},
+        width = 760 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom;
 
     // parse the date / time
 
@@ -84,89 +105,128 @@ function scatterPlot(){
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + margin.left + "," + margin.top + ")");
     svg.call(tip);
     // Get the data
-    d3.csv("hands_pca.csv", function(error, data) {
-      if (error) throw error;
+    d3.csv("hands_pca.csv", function (error, data) {
+        if (error) throw error;
 
-      // format the data
-      data.forEach(function(d) {
-          d.x = +d.x;
-          d.y = +d.y;
-      });
+        // format the data
+        data.forEach(function (d) {
+            d.x = +d.x;
+            d.y = +d.y;
+        });
 
-      // Scale the range of the data
-      x.domain([d3.min(data, function(d){ return +d.x;})-0.1, d3.max(data, function(d) {return +d.x;})+0.1]);
-      y.domain([d3.min(data, function(d){ return +d.y;})-0.1, d3.max(data, function(d) {return +d.y;})+0.1]);
+        // Scale the range of the data
+        x.domain([d3.min(data, function (d) {
+            return +d.x;
+        }) - 0.1, d3.max(data, function (d) {
+            return +d.x;
+        }) + 0.1]);
+        y.domain([d3.min(data, function (d) {
+            return +d.y;
+        }) - 0.1, d3.max(data, function (d) {
+            return +d.y;
+        }) + 0.1]);
 
-      //x.domain(d3.extent(data, function(d) { return d.x; }));
-      //y.domain([0, d3.max(data, function(d) { return d.y; })]);
+        //x.domain(d3.extent(data, function(d) { return d.x; }));
+        //y.domain([0, d3.max(data, function(d) { return d.y; })]);
 
-      // Add the valueline path.
-      svg.append("path")
-          .data([data])
-          .attr("class", "line")
+        // Add the valueline path.
+        svg.append("path")
+            .data([data])
+            .attr("class", "line")
 
-      // Add the scatterplot
-      svg.selectAll("dot")
+        // Add the scatterplot
+        svg.selectAll("dot")
 
-          .data(data)
-          .enter()
-          .append("circle")
-          .attr("r", 5)
-          .attr('class', 'plot_circle')
-          .attr('data-id', 'something')
-          .attr("cx", function(d) { return x(d.x); })
-          .attr("cy", function(d) { return y(d.y); })
-          .on('mouseover', tip.show)
-          .on('mouseout', tip.hide)
-          .style("fill", 'black')
-          .each(function (d, i) {
-            d3.select(this).attr('data-id', i);
-          });
+            .data(data)
+            .enter()
+            .append("circle")
+            .attr("r", 5)
+            .attr('class', 'plot_circle')
+            .attr('data-id', 'something')
+            .attr("cx", function (d) {
+                return x(d.x);
+            })
+            .attr("cy", function (d) {
+                return y(d.y);
+            })
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide)
+            .style("fill", 'black')
+            .each(function (d, i) {
+                d3.select(this).attr('data-id', i);
+            });
 
-      // Add the X Axis
-      svg.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .call(d3.axisBottom(x));
+        // Add the X Axis
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
 
-      // Add the Y Axis
-      svg.append("g")
-          .call(d3.axisLeft(y));
+        // Add the Y Axis
+        svg.append("g")
+            .call(d3.axisLeft(y));
 
     });
 }
 
-function getHandCoordinates(data){
-  coords = []
-  for (var i = 0; i < 56; i++){
-    coords[i] = {'x1': data[i], 'y1': data[i+56], 'x2': data[i+1], 'y2': data[i+57]};
-  }
-  return coords;
+function getHandCoordinates(data) {
+    var coords = [];
+    for (var i = 0; i < 56; i++) {
+        coords[i] = {'x1': data[i], 'y1': data[i + 56], 'x2': data[i + 1], 'y2': data[i + 57]};
+    }
+    return coords;
 }
 
+var selected = [];
 
-$(document).on('click', '.small_hand_div', function () {
-  dataid = $(this).attr('data-id');
-  $('.plot_circle').css('fill','black');
-  $('.plot_circle').attr('r','5');
-  $('.plot_circle[data-id=' + dataid + ']').css('fill','red');
-  $('.plot_circle[data-id=' + dataid + ']').attr('r','10');
-  drawBigHand($(this).attr('data-id'));
+function toggle(dataid){
+    var index = selected.indexOf(dataid);
+
+    if (index > -1) {
+        selected.splice(index, 1);
+        $('.plot_circle[data-id=' + dataid + ']').css('fill', 'black');
+        $('.plot_circle[data-id=' + dataid + ']').attr('r', '5');
+    }
+
+    else {
+        selected.push(dataid);
+        $('.plot_circle[data-id=' + dataid + ']').css('fill', 'red');
+        $('.plot_circle[data-id=' + dataid + ']').attr('r', '10');
+    }
+}
+
+$(document).on('click', '.small_hand_div', function (e) {
+    if (!(e.ctrlKey || e.metaKey)){
+        $('.plot_circle').css('fill', 'black');
+        $('.plot_circle').attr('r', '5');
+        selected = []
+    }
+
+    dataid = $(this).attr('data-id');
+
+    toggle(dataid);
+
+    drawBigHand($(this).attr('data-id'));
 });
 
-$(document).on('click', '.plot_circle', function () {
-  drawBigHand($(this).attr('data-id'));
-  dataid = $(this).attr('data-id');
-  $('.plot_circle').css('fill','black');
-  $('.plot_circle').attr('r','5');
-  $('.plot_circle[data-id=' + dataid + ']').css('fill','red');
-  $('.plot_circle[data-id=' + dataid + ']').attr('r','10');
+$(document).on('click', '.plot_circle', function (e) {
+
+    if (!(e.ctrlKey || e.metaKey)){
+        $('.plot_circle').css('fill', 'black');
+        $('.plot_circle').attr('r', '5');
+        selected = []
+    }
+
+    dataid = $(this).attr('data-id');
+    toggle(dataid);
+
+    drawBigHand($(this).attr('data-id'));
 });
 
-d3.select(window).on('load', function(){
-  drawSmallHands();
-  drawBigHand(0);
-  scatterPlot();
+d3.select(window).on('load', function () {
+    drawBigHand(0);
+    scatterPlot();
+    drawSmallHands()
 });
