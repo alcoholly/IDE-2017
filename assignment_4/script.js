@@ -158,6 +158,11 @@ $(document).on('click', '.small_hand_div', function () {
 
 $(document).on('click', '.plot_circle', function () {
   drawBigHand($(this).attr('data-id'));
+  dataid = $(this).attr('data-id');
+  $('.plot_circle').css('fill','black');
+  $('.plot_circle').attr('r','5');
+  $('.plot_circle[data-id=' + dataid + ']').css('fill','red');
+  $('.plot_circle[data-id=' + dataid + ']').attr('r','10');
 });
 
 d3.select(window).on('load', function(){
