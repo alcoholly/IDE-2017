@@ -14,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../assignment_4/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="546">
-              <caret line="213" column="15" lean-forward="false" selection-start-line="213" selection-start-column="15" selection-end-line="213" selection-end-column="15" />
+            <state relative-caret-position="147">
+              <caret line="182" column="93" lean-forward="true" selection-start-line="182" selection-start-column="93" selection-end-line="182" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hands_pca.csv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hands_pca.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../assignment_4/hands_pca.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+            <state relative-caret-position="21">
+              <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -69,6 +69,7 @@
       <find>JAN</find>
       <find>2.3</find>
       <find>born</find>
+      <find>0.363</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -83,8 +84,8 @@
         <option value="$PROJECT_DIR$/../assignment_3/index.html" />
         <option value="$PROJECT_DIR$/../assignment_3/script3.js" />
         <option value="$PROJECT_DIR$/../assignment_3/index2.html" />
-        <option value="$PROJECT_DIR$/../assignment_4/index.html" />
         <option value="$PROJECT_DIR$/../assignment_4/hands_pca.csv" />
+        <option value="$PROJECT_DIR$/../assignment_4/index.html" />
       </list>
     </option>
   </component>
@@ -160,12 +161,12 @@
       <workItem from="1512128758247" duration="70010000" />
       <workItem from="1512983972676" duration="5165000" />
       <workItem from="1513165373005" duration="18190000" />
-      <workItem from="1513623303707" duration="22947000" />
+      <workItem from="1513623303707" duration="23219000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116312000" />
+    <option name="totallyTimeSpent" value="116584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -344,18 +345,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../assignment_4/index.html">
+    <entry file="file://$PROJECT_DIR$/../assignment_4/hands_pca.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="213" column="15" lean-forward="false" selection-start-line="213" selection-start-column="15" selection-end-line="213" selection-end-column="15" />
+        <state relative-caret-position="21">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="1" selection-end-line="1" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../assignment_4/hands_pca.csv">
+    <entry file="file://$PROJECT_DIR$/../assignment_4/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="24" column="12" lean-forward="true" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
+        <state relative-caret-position="147">
+          <caret line="182" column="93" lean-forward="true" selection-start-line="182" selection-start-column="93" selection-end-line="182" selection-end-column="93" />
           <folding />
         </state>
       </provider>
