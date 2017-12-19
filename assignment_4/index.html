@@ -173,22 +173,37 @@
     <div id="bottom_wrap">
     <div id="description">
       <h2>Description</h2>
-      The dataset consists of 40 data points with 112 dimensions each. The dimensions represent the contours of hands of different shapes.
-      To plot this in a scatterplot, a script performing PCA on the dataset is provided, where we plot the first two (the largest) dimensions
-      in the scatterplot.<br>
-      The make it easier to use the PCA data, we modified the python script to output only the two first values along with x and y as the labels.<br>
-      The large image of a hand can be updated by either clicking one of the small hands above it or by clicking one of the circles in the PCA plot.
+      Above we present a 2-panel visualization based on a dataset  of hands of different shapes and finger extensions (hand set) that consists of 40 data points with 112 dimensions each.
+      These dimensions represent the x and y coordinates of the (56) points that form the contours of the hands in the dataset. All the hands outlines are presented on the top left panel of the visualization and
+      correspond to the <i>geometric representation</i> of the data. At the bottom of the left panel, a larger version of one (user-selected) hand outline is presented.
+      The right panel of the visualization shows a scatter plot that is produced by projecting the data points onto the first 2 principal components of the data.
+      These values capture the largest variance in the data and were obtained by using a provided python script that performing PCA on the hand set.
+      The script was modified to output only the two first values along with x and y as the labels.<br>
+      <h2>Methods</h2>
+      When the user either clicks on one of the small version of the hands-outlines (top-left panel), or clicks on one of the points in the PCA plot (right panel) the larger version
+      of the hand outline (bottom-left panel) is updated and the corresponding hand outline is shown. Moreover, by clicking on one of the small hands-outlines the corresponding point in the scatterplot
+      is highlighted so that the user can easily map between the hand outlines and their corresponding PCA projections. Lastly, the user has the option to hover over a point in the scatterplot and have a
+      small box display its respective PCA values.<br>
       <h2>Principal component analysis</h2>
+      Project high dimensional data into lower dimension
+      explains the greatest variation in the data
+      i will write more tomorrow...
 
-      <h2>Results and conclusions</h2>
-      When looking at the data in the scatterplot and visualising it, it seems that a lower x value (the first domension in the PCA data)
-      corresponds to more separated fingers overall, or perhaps the distance between the two outmost fingers.
-      The y value seems to correspond more to the distance between the little finger and the other fingers.
+      <h2>Results and Conclusions</h2>
+      The 2-panel visualisation and the mapping between the 2 types of representation allows us to directly compare the geometric representations of the hands to their lower dimensional analogues.
+      We can observe that the datapoints of similar postures are clustered closely together while distant datapoints suggest that their respective hands outlines are quite different.
+      If we try to interpret what type of differences each component captures we can notice that a lower x value -the first PCA dimension that accounts for largest possible variance in the data-
+      generally corresponds to more separated fingers. Taking into account the bottom-left datapoint that has the second-lowest x value (~ -0.42) <i>while</i> the index, the ring finger and the small finger
+      are close to each other, we could rephrase this observation by saying that lower x values are associated with <i> higher distance between the two outermost fingers</i>.
+      The y value (second PCA component) on the other hand, seems to correspond more to the distance within the fingers- although its role in the underlying differences in the hand-outlines
+      is not as clear as in the case of the first principal component. Overall our dataset is quite small and the differences between the datapoints are not very large. If we worked with a different dataset
+      that would contain more datapoints with greater variance (eg a hand set that contained hand gestures of sign language) we would expect the projection onto the 2 first PCA components
+      would form more distinctive clusters.
 
 
 
       <h4>Credits</h4>
-      We stole code from <a href="https://codepen.io/wifeo/pen/qzwkb">here</a> to create the size increase for the small hands, from
+      We used code from <a href="https://codepen.io/wifeo/pen/qzwkb">here</a> to create the size increase for the small hands, from
       <a href="https://bl.ocks.org/dimitardanailov/6f0a451d4457b9fa7bf6e0dddcd0f468">here</a> to draw the hands, and from
       <a href="https://bl.ocks.org/d3noob/6f082f0e3b820b6bf68b78f2f7786084">here</a> to create the scatter plot.
       </div>
@@ -200,7 +215,7 @@
         <h3>Jura</h3>
         <h3>Anna</h3>
        I added tooltips to the scatter plot points based on <a href="http://bl.ocks.org/Caged/6476579">this</a> source. When the user hovers over
-       a point of the scatterplot, the respective values of the first two PCA variables (x and y) are displayed in a black box above the point.
+       a point, the respective values of the first two PCA variables (x and y) are displayed in a black box above it.
 
     </div>
   </div>
