@@ -14,21 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="com_top_tags.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/com_top_tags.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="284" lean-forward="true" selection-start-line="0" selection-start-column="284" selection-end-line="0" selection-end-column="284" />
+            <state relative-caret-position="714">
+              <caret line="53" column="48" lean-forward="false" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -37,8 +27,8 @@
       <file leaf-file-name="Json_Graph.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Json_Graph.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4830">
-              <caret line="0" column="33862" lean-forward="false" selection-start-line="0" selection-start-column="33857" selection-end-line="0" selection-end-column="33862" />
+            <state relative-caret-position="-1407">
+              <caret line="0" column="33862" lean-forward="false" selection-start-line="0" selection-start-column="33862" selection-end-line="0" selection-end-column="33862" />
               <folding />
             </state>
           </provider>
@@ -65,8 +55,8 @@
       <list>
         <option value="$PROJECT_DIR$/Final_Project.html" />
         <option value="$PROJECT_DIR$/Json_Graph.json" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/com_top_tags.json" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -140,12 +130,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1515788245519</updated>
-      <workItem from="1515788246711" duration="5551000" />
+      <workItem from="1515788246711" duration="6428000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5551000" />
+    <option name="totallyTimeSpent" value="6428000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
@@ -188,26 +178,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/com_top_tags.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="284" lean-forward="true" selection-start-line="0" selection-start-column="284" selection-end-line="0" selection-end-column="284" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Json_Graph.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4830">
-          <caret line="0" column="33862" lean-forward="false" selection-start-line="0" selection-start-column="33857" selection-end-line="0" selection-end-column="33862" />
+        <state relative-caret-position="-1407">
+          <caret line="0" column="33862" lean-forward="false" selection-start-line="0" selection-start-column="33862" selection-end-line="0" selection-end-column="33862" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="28" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/com_top_tags.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="284" lean-forward="true" selection-start-line="0" selection-start-column="284" selection-end-line="0" selection-end-column="284" />
+        <state relative-caret-position="714">
+          <caret line="53" column="48" lean-forward="false" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
           <folding />
         </state>
       </provider>
