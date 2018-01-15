@@ -43,7 +43,7 @@
             .selectAll("circle")
             .data(graph.nodes)
             .enter().append("circle")
-            .attr("r", function(d) { return d['node degree'] * 3; })
+            .attr("r", function(d) { return d['node degree'] * 2.1; })
             .attr("fill", function(d) { return color(d.community); })
             .call(d3.drag()
                 .on("start", dragstarted)
