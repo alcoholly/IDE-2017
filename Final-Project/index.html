@@ -24,15 +24,45 @@
       left:20px;
     }
 
+    #search{
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      position:absolute;
+      top:20px;
+      left:845px;
+    }
+
 </style>
-<div class="svg_container" style="width:960px; height:900px;">
+<div class="svg_container" style="width:960px; height:900px;" >
+<input id="search" type="text" placeholder="Search..." onkeyup="search_node()">
 <svg width="960" height="900" style="border:1px solid black;"></svg>
 </div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
   <script>
 
+  function search_node(){
+    query = $("#search").val();
+    var nodes = d3.selectAll('circle').each(function(d){
+      current = d3.select(this)
+      name = current.attr('text');
+      if (query.length > 2){
+        if (name.toLowerCase().includes(query.toLowerCase())){
+          current.style('stroke-width', '4.5px')
+          current.style('stroke', 'green')
+          this.parentNode.appendChild(this);
+        } else {
+          current.style('stroke-width', '0.5px')
+          current.style('stroke', 'black')
+        }
+      } else {
+        current.style('stroke-width', '0.5px')
+        current.style('stroke', 'black')
+      }
 
+    })
+
+  }
 
   var color = d3.scaleOrdinal(d3.schemeCategory20);
 
@@ -155,6 +185,8 @@
       function isConnected(a, b) {
           return linkedByIndex[a.index + "," + b.index] || linkedByIndex[b.index + "," + a.index] || a.index == b.index;
       }
+
+
 
       // fade nodes on hover
       function mouseOver(opacity) {
