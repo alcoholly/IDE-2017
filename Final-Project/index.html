@@ -8,30 +8,52 @@
     }
 
     .nodes circle {
-        stroke: #fff;
-        stroke-width: 1.5px;
+        stroke: black;
+        stroke-width: 0.5px;
+    }
+
+    .svgtext {
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        pointer-events: none;
+    }
+
+    #zoomtext{
+      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+      position:absolute;
+      top:20px;
+      left:20px;
     }
 
 </style>
+<div class="svg_container" style="width:960px; height:900px;">
 <svg width="960" height="900" style="border:1px solid black;"></svg>
+</div>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 
   <script>
 
-  var svg = d3.select("svg"),
-      width = +svg.attr("width"),
-      height = +svg.attr("height");
+
 
   var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 
   d3.json("Json_Graph.json", function(error, graph) {
     if (error) throw error;
+    var svg = d3.select("svg")
+    .call(d3.zoom()
+        .scaleExtent([1, 10])
+        .on("zoom", zoom)),
+        width = +svg.attr("width"),
+        height = +svg.attr("height");
+
+    d3.select('.svg_container').append('text')
+          .attr('id', 'zoomtext')
+          .text('100%')
 
     var simulation = d3.forceSimulation(graph.nodes)
       .force("link", d3.forceLink().id(function(d) { return d.id; }).distance(5))
       .force("charge", d3.forceManyBody().strength(-5))
-      .force("center", d3.forceCenter(width / 2, (height+70) / 2))
+      .force("center", d3.forceCenter(width / 2, (height+60) / 2))
       .stop();
 
     simulation.force("link")
@@ -44,6 +66,7 @@
           .selectAll("line")
           .data(graph.links)
           .enter().append("line")
+
             .attr("x1", function(d) { return d.source.x; })
             .attr("y1", function(d) { return d.source.y; })
             .attr("x2", function(d) { return d.target.x; })
@@ -51,36 +74,33 @@
             .attr("stroke-width", function(d) { return Math.sqrt(d.value); });
 
       var node = svg.append("g")
+
         .attr("class", "nodes")
         .selectAll("circle")
         .data(graph.nodes)
         .enter().append("circle")
+        .attr('text', function(d){ return d.id;}).style("stroke", "black")
+        .on("mouseover", mouseOver(0.05))
+        .on("mouseout", mouseOut)
           .attr("r", function(d) { return d['node degree']; })
-          .attr("fill", function(d) { return color(d.group); })
+
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; })
-          .attr("r", function(d) { return d['node degree']; })
+          .attr("r", function(d) { return d['node degree'] * 1.4; })
           .attr("fill", function(d) { return color(d.community); })
+          .attr('stroke-width',20)
           .call(d3.drag()
             .on("start", dragstarted)
             .on("drag", dragged)
-            .on("end", dragended));
+            .on("end", dragended))
 
-      node.append("title")
-          .text(function(d) { return d.id; });
-
-      svg.append("rect")
-        .attr("fill", "none")
-        .attr("pointer-events", "all")
-        .attr("width", width)
-        .attr("height", height)
-        .call(d3.zoom()
-            .scaleExtent([1, 10])
-            .on("zoom", zoom));
 
       function zoom() {
-          var k = d3.event.transform.k;
-          console.log(k);
+          d3.select("svg").selectAll("text").remove();
+          var zoom_value = d3.event.transform.k * 100;
+          formatDecimal = d3.format(".0f")
+          d3.select('#zoomtext').text(formatDecimal(zoom_value) + '%');
+
           translation = [d3.event.transform.x, d3.event.transform.y]
           scaleFactor = d3.event.transform.k
           tick(); //update positions
@@ -125,6 +145,59 @@
           d.fx = null;
           d.fy = null;
       }
+
+      var linkedByIndex = {};
+      graph.links.forEach(function(d) {
+          linkedByIndex[d.source.index + "," + d.target.index] = 1;
+      });
+
+      // check the dictionary to see if nodes are linked
+      function isConnected(a, b) {
+          return linkedByIndex[a.index + "," + b.index] || linkedByIndex[b.index + "," + a.index] || a.index == b.index;
+      }
+
+      // fade nodes on hover
+      function mouseOver(opacity) {
+
+          return function(d) {
+
+              // check all other nodes to see if they're connected
+              // to this one. if so, keep the opacity at 1, otherwise
+              // fade
+              node.style("stroke-opacity", function(o) {
+                  thisOpacity = isConnected(d, o) ? 1 : opacity;
+                  if (thisOpacity === 1){
+                    svg.append('text')
+                      .attr('class', 'svgtext')
+                      .attr('x',+d3.select(this).attr('cx') + +d3.select(this).attr('r') + 10)
+                      .attr('y',+d3.select(this).attr('cy') + (+d3.select(this).attr('r') / 2))
+                      .text(d3.select(this).attr('text'));
+                  }
+                  return thisOpacity;
+              });
+              node.style("fill-opacity", function(o) {
+                  thisOpacity = isConnected(d, o) ? 1 : opacity;
+                  return thisOpacity;
+              });
+              // also style link accordingly
+              link.style("stroke-opacity", function(o) {
+                  return o.source === d || o.target === d ? 1 : opacity;
+              });
+              link.style("stroke", function(o){
+                  return o.source === d || o.target === d ? o.source.colour : "#ddd";
+              });
+          };
+      }
+
+      function mouseOut() {
+          d3.select("svg").selectAll("text").remove();
+          node.style("stroke-opacity", 1);
+          node.style("fill-opacity", 1);
+          link.style("stroke-opacity", 1);
+          link.style("stroke", "#ddd");
+      }
+
+
   });
 
   </script>
