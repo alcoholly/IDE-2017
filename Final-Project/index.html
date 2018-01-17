@@ -41,23 +41,62 @@
 
 <script>
 
+    var FOCUS_SIZE = 5;
+
+    var highlighted = new Set();
+
+    function defocus(node, hidden=false){
+        name = node.attr("text");
+
+        if(highlighted.has(name)) {
+            size = node.attr("r");
+            node.attr("r", size / FOCUS_SIZE);
+            highlighted.delete(name)
+        }
+
+        node.style("stroke-opacity", hidden ? 0.1 : 1);
+        node.style("fill-opacity", hidden ? 0.1 : 1);
+    }
+
+    function focus(node){
+        name = node.attr("text");
+
+        if(!highlighted.has(name)) {
+            size = node.attr("r");
+            node.attr("r", (size * FOCUS_SIZE));
+
+            highlighted.add(name)
+        }
+
+        var svg = d3.select("svg");
+
+        svg.append('text')
+            .attr('class', 'svgtext')
+            .attr('x', node.attr('cx'))
+            .attr('y', node.attr('cy'))
+            .text(node.attr('text'));
+
+        node.style("stroke-opacity", 1);
+        node.style("fill-opacity", 1);
+    }
+
     function search_node() {
-        query = $("#search").val();
+
+        search_query = $("#search").val();
+
         var nodes = d3.selectAll('circle').each(function (d) {
-            current = d3.select(this)
+            current = d3.select(this);
             name = current.attr('text');
-            if (query.length > 2) {
-                if (name.toLowerCase().includes(query.toLowerCase())) {
-                    current.style('stroke-width', '4.5px')
-                    current.style('stroke', 'green')
-                    this.parentNode.appendChild(this);
+
+            if (search_query.length > 2) {
+                if (name.toLowerCase().includes(search_query.toLowerCase())) {
+                    focus(current);
                 } else {
-                    current.style('stroke-width', '0.5px')
-                    current.style('stroke', 'black')
+                    defocus(current, true);
                 }
             } else {
-                current.style('stroke-width', '0.5px')
-                current.style('stroke', 'black')
+                defocus(current);
+                d3.select("svg").selectAll("text").remove();
             }
 
         })
@@ -146,7 +185,7 @@
             .call(d3.drag()
                 .on("start", dragstarted)
                 .on("drag", dragged)
-                .on("end", dragended))
+                .on("end", dragended));
 
 
         function zoom() {
@@ -216,22 +255,36 @@
 
             return function (d) {
 
+                // var search_query = $("#search").val();
+                // if(search_query){
+                //     var name = node.attr("text");
+                //     highlighted.forEach(function (item) {
+                //         focued_node = svg.se
+                //     });
+                //     if(!highlighted.has(name.toLowerCase())) {
+                //         return
+                //     }
+                // }
+
                 // check all other nodes to see if they're connected
                 // to this one. if so, keep the opacity at 1, otherwise
                 // fade
                 node.style("stroke-opacity", function (o) {
                     thisOpacity = isConnected(d, o) ? 1 : opacity;
-                    if (thisOpacity === 1) {
+                    text = d3.select(this).attr('text');
+                    if (thisOpacity === 1 && !highlighted.has(text)) {
                         svg.append('text')
                             .attr('class', 'svgtext')
                             .attr('x', +d3.select(this).attr('cx') + +d3.select(this).attr('r') + 10)
                             .attr('y', +d3.select(this).attr('cy') + (+d3.select(this).attr('r') / 2))
-                            .text(d3.select(this).attr('text'));
+                            .text(text);
                     }
                     return thisOpacity;
                 });
                 node.style("fill-opacity", function (o) {
-                    thisOpacity = isConnected(d, o) ? 1 : opacity;
+                    text = d3.select(this).attr('text');
+                    highlight = highlighted.has(text);
+                    thisOpacity = isConnected(d, o) || highlight ? 1 : opacity;
                     return thisOpacity;
                 });
                 // also style link accordingly
@@ -250,9 +303,9 @@
             node.style("fill-opacity", 1);
             link.style("stroke-opacity", 1);
             link.style("stroke", "#ddd");
+
+            search_node()
         }
-
-
     });
 
 </script>
