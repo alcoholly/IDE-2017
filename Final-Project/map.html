@@ -6,6 +6,12 @@
   <script src="d3.geomap.dependencies.min.js"></script>
   <script src="d3.geomap.min.js"></script>
 
+  <style>
+  path:hover{
+    fill:black !important;
+}
+  </style>
+
 </head>
 
 
@@ -24,9 +30,9 @@ function change_community(){
 
 var map = d3.geomap.choropleth()
     .geofile('countries.json')
-    .colors(['green','red'])
+    .colors(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928'])
     .column('brit-pop-rock-piano-post')
-    .domain([0, 1])
+    .domain([0, 19])
     .legend(false)
     .unitId('country');
 
