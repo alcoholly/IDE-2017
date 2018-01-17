@@ -54,8 +54,8 @@
             highlighted.delete(name)
         }
 
-        node.style("stroke-opacity", hidden ? 0.1 : 1);
-        node.style("fill-opacity", hidden ? 0.1 : 1);
+        node.style("stroke-opacity", hidden ? 0.05 : 1);
+        node.style("fill-opacity", hidden ? 0.05 : 1);
     }
 
     function focus(node){
@@ -84,6 +84,8 @@
 
         search_query = $("#search").val();
 
+
+
         var nodes = d3.selectAll('circle').each(function (d) {
             current = d3.select(this);
             name = current.attr('text');
@@ -94,12 +96,27 @@
                 } else {
                     defocus(current, true);
                 }
+
             } else {
                 defocus(current);
                 d3.select("svg").selectAll("text").remove();
             }
 
         })
+
+        if (search_query.length > 2) {
+            var links = d3.selectAll('line').each(function (d) {
+                link = d3.select(this)
+                link.style("stroke-opacity", 0.1);
+            });
+        }
+
+        else{
+            var links = d3.selectAll('line').each(function (d) {
+                link = d3.select(this)
+                link.style("stroke-opacity", 0.6);
+            });
+        }
 
     }
 
