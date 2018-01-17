@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<head>
+
+</head>
+
 <style>
 
     .links line {
@@ -41,13 +45,15 @@
 </style>
 <div class="svg_container" style="width:960px; height:900px;">
     <input id="search" type="text" placeholder="Search..." onkeyup="search_node()">
-    <svg width="1020" height="1000" style="border:1px solid black;"></svg>
+    <svg width="960" height="900" style="border:1px solid black;"></svg>
 </div>
+
+
+
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <script>
-
     var FOCUS_SIZE = 5;
 
     var highlighted = new Set();
