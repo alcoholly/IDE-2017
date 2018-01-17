@@ -1,0 +1,37 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <link href="d3.geomap.css" rel="stylesheet">
+  <script src="d3.geomap.dependencies.min.js"></script>
+  <script src="d3.geomap.min.js"></script>
+
+</head>
+
+
+<body>
+  <div id="map"></div>
+</body>
+
+
+<script>
+var map = d3.geomap.choropleth()
+    .geofile('countries.json')
+    .colors(['green','red'])
+    .column('1800')
+    .domain([0, 1])
+    .legend(false)
+    .unitId('Country');
+
+d3.select('#map')
+    .call(map.draw, map);
+
+d3.csv('map_test_data.csv', function(error, data) {
+  d3.select('#map')
+      .datum(data)
+      .call(map.draw, map);
+});
+
+</script>
+
+</html>
