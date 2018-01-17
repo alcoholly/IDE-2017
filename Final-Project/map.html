@@ -10,15 +10,21 @@
 
 
 <body>
-  <div id="map"></div>
+
+  <div id="map">  <button onclick="change_community()">Change community</button></div>
 </body>
 
 
 <script>
+
+function change_community(){
+  map.column('roll-oldies-60s-heavy-70s').update()
+}
+
 var map = d3.geomap.choropleth()
     .geofile('countries.json')
     .colors(['green','red'])
-    .column('k')
+    .column('brit-pop-rock-piano-post')
     .domain([0, 1])
     .legend(false)
     .unitId('country');
