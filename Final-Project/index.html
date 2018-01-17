@@ -90,6 +90,7 @@
     function search_node() {
 
         search_query = $("#search").val();
+        d3.select("svg").selectAll("text").remove();
 
 
 
@@ -141,11 +142,11 @@
 
         d3.select('.svg_container').append('text')
             .attr('id', 'zoomtext')
-            .text('100%')
+            .text('100%');
 
         d3.select('.svg_container').append('text')
             .attr('id', 'nametext')
-            .text('100%')
+            .text('');
 
         var simulation = d3.forceSimulation(graph.nodes)
             .force("link", d3.forceLink().id(function (d) {
