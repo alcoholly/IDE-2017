@@ -18,10 +18,10 @@
 var map = d3.geomap.choropleth()
     .geofile('countries.json')
     .colors(['green','red'])
-    .column('1800')
+    .column('k')
     .domain([0, 1])
     .legend(false)
-    .unitId('Country');
+    .unitId('country');
 
 d3.select('#map')
     .call(map.draw, map);
