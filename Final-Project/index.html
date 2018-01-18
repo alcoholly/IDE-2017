@@ -136,7 +136,7 @@
     var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 
-    d3.json("Json_Graph.json", function (error, graph) {
+    d3.json("data/Json_Graph.json", function (error, graph) {
         if (error) throw error;
         var svg = d3.select("svg")
                 .call(d3.zoom()

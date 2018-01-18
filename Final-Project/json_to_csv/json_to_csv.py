@@ -4,7 +4,7 @@
 import pickle, csv
 from iso_codes import iso_codes
 
-pkl_file = open('artists_counts_by_genre.json', 'rb')
+pkl_file = open('artists_counts_by_genre.pickle', 'rb')
 data = pickle.load(pkl_file)
 pkl_file.close()
 
@@ -19,8 +19,8 @@ for key in data:
         all_countries.append(d)
         if data[key][d] > max:
             max = data[key][d]
-print(all_genres)
-with open('out.csv', "wb") as csv_file:
+
+with open('map_data.csv', "wb") as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
     header = ['country']
     for key in data:

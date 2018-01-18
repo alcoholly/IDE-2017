@@ -106,7 +106,7 @@ var map = d3.geomap.choropleth()
 .unitId('country');
 
 
-d3.csv('map_test_data.csv', function(error, data) {
+d3.csv('data/map_data.csv', function(error, data) {
   d3.select('#map')
   .call(map.draw, map)
   .datum(data)
