@@ -127,43 +127,47 @@
     }
 </style>
 
+<body>
+    <div class="main_container" style="position: relative">
+        <div class="bands_container">
+            <input id="search" type="text" placeholder="Search..." onkeyup="search_node()">
+            <p id="zoomtext" style="position: absolute">100%</p>
+            <p id="nametext" style="position: absolute; margin-left: 250px"></p>
+            <svg class="bands_svg" id="bands" style="width: 100%; height: 100%;"></svg>
+        </div>
 
-<div class="main_container">
-    <div class="bands_container">
-        <input id="search" type="text" placeholder="Search..." onkeyup="search_node()">
-        <svg class="bands_svg" id="bands" style="width: 100%; height: 100%;"></svg>
+        <div class="map_container" style="position: absolute">
+            <svg id="map" style="width: 100%; height: 100%;">
+                <foreignObject position attributes>
+                    <html:select>
+                        <select class="community_selector" id="community_select">
+                            <option value="svensk-folk-swedish-alt-country">svensk-folk-swedish-alt-country</option>
+                            <option value="brit-pop-rock-piano-post">brit-pop-rock-piano-post</option>
+                            <option value="roll-oldies-60s-heavy-70s">roll-oldies-60s-heavy-70s</option>
+                            <option value="60s-oldies-motown-50s-40s">60s-oldies-motown-50s-40s</option>
+                            <option value="indietronica-folk-revival-post-punk">indietronica-folk-revival-post-punk</option>
+                            <option value="r'n'b-hop-hip-r&b-urban">r'n'b-hop-hip-r&b-urban</option>
+                            <option value="house-tropical-electro-dj-kygo">house-tropical-electro-dj-kygo</option>
+                            <option value="east-rap-coast-hop-hip">east-rap-coast-hop-hip</option>
+                            <option value="metal-grunge-screamo-nu-heavy">metal-grunge-screamo-nu-heavy</option>
+                            <option value="skitz0rz-sunflower-factor-bitch-uitluisteren">
+                                skitz0rz-sunflower-factor-bitch-uitluisteren
+                            </option>
+                            <option value="minimal-trip-hop-idm-techno">minimal-trip-hop-idm-techno</option>
+                        </select></html:select>
+                </foreignObject>
+            </svg>
+        </div>
     </div>
 
-    <div class="map_container">
-        <svg id="map" style="width: 100%; height: 100%;">
-            <foreignObject position attributes>
-                <html:select>
-                    <select class="community_selector" id="community_select">
-                        <option value="svensk-folk-swedish-alt-country">svensk-folk-swedish-alt-country</option>
-                        <option value="brit-pop-rock-piano-post">brit-pop-rock-piano-post</option>
-                        <option value="roll-oldies-60s-heavy-70s">roll-oldies-60s-heavy-70s</option>
-                        <option value="60s-oldies-motown-50s-40s">60s-oldies-motown-50s-40s</option>
-                        <option value="indietronica-folk-revival-post-punk">indietronica-folk-revival-post-punk</option>
-                        <option value="r'n'b-hop-hip-r&b-urban">r'n'b-hop-hip-r&b-urban</option>
-                        <option value="house-tropical-electro-dj-kygo">house-tropical-electro-dj-kygo</option>
-                        <option value="east-rap-coast-hop-hip">east-rap-coast-hop-hip</option>
-                        <option value="metal-grunge-screamo-nu-heavy">metal-grunge-screamo-nu-heavy</option>
-                        <option value="skitz0rz-sunflower-factor-bitch-uitluisteren">
-                            skitz0rz-sunflower-factor-bitch-uitluisteren
-                        </option>
-                        <option value="minimal-trip-hop-idm-techno">minimal-trip-hop-idm-techno</option>
-                    </select></html:select>
-            </foreignObject>
-        </svg>
+    <div id="tooltip">
+        <span id="tooltip-header"></span>
+        <br><br>
+        <span id="tooltip-community"></span>
     </div>
-</div>
+</body>
 
 
-<div id="tooltip">
-    <span id="tooltip-header"></span>
-    <br><br>
-    <span id="tooltip-community"></span>
-</div>
 
 
 <script src="resources/d3.v4.min.js"></script>

@@ -89,14 +89,6 @@ d3.json("Json_Graph.json", function (error, graph) {
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
-    d3.select('.svg_container').append('text')
-        .attr('id', 'zoomtext')
-        .text('100%');
-
-    d3.select('.svg_container').append('text')
-        .attr('id', '.nametext')
-        .text('');
-
     var simulation = d3.forceSimulation(graph.nodes)
         .force("link", d3.forceLink().id(function (d) {
             return d.id;
@@ -235,7 +227,7 @@ d3.json("Json_Graph.json", function (error, graph) {
         return function (d) {
 
             node_on_mouse = d3.selectAll("circle").filter(function(n) { return n.id === d.id; });
-            d3.select('.nametext').text(node_on_mouse.attr('text'));
+            d3.select('#nametext').text(node_on_mouse.attr('text'));
 
             // check all other nodes to see if they're connected
             // to this one. if so, keep the opacity at 1, otherwise
@@ -271,6 +263,7 @@ d3.json("Json_Graph.json", function (error, graph) {
 
     function mouseOut() {
         d3.select("#bands").selectAll("text").remove();
+        d3.select('#nametext').text(node_on_mouse.attr(''));
         node.style("stroke-opacity", 1);
         node.style("fill-opacity", 1);
         link.style("stroke-opacity", 1);
