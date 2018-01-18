@@ -25,10 +25,10 @@ function focus(node){
         highlighted.add(name)
     }
 
-    var svg = d3.select("bands");
+    var svg = d3.select("#bands");
 
     svg.append('text')
-        .attr('class', 'svgtext')
+        .attr('class', '.svgtext')
         .attr('x', node.attr('cx'))
         .attr('y', node.attr('cy'))
         .text(node.attr('text'));
@@ -56,7 +56,7 @@ function search_node() {
 
         } else {
             defocus(current);
-            d3.select("bands").selectAll("text").remove();
+            d3.select("#bands").selectAll("text").remove();
         }
 
     })
@@ -94,7 +94,7 @@ d3.json("Json_Graph.json", function (error, graph) {
         .text('100%');
 
     d3.select('.svg_container').append('text')
-        .attr('id', 'nametext')
+        .attr('id', '.nametext')
         .text('');
 
     var simulation = d3.forceSimulation(graph.nodes)
@@ -167,7 +167,7 @@ d3.json("Json_Graph.json", function (error, graph) {
 
 
     function zoom() {
-        d3.select("bands").selectAll("text").remove();
+        d3.select("#bands").selectAll("text").remove();
         var zoom_value = d3.event.transform.k * 100;
         formatDecimal = d3.format(".0f")
         d3.select('#zoomtext').text(formatDecimal(zoom_value) + '%');
@@ -235,7 +235,7 @@ d3.json("Json_Graph.json", function (error, graph) {
         return function (d) {
 
             node_on_mouse = d3.selectAll("circle").filter(function(n) { return n.id === d.id; });
-            d3.select('#nametext').text(node_on_mouse.attr('text'));
+            d3.select('.nametext').text(node_on_mouse.attr('text'));
 
             // check all other nodes to see if they're connected
             // to this one. if so, keep the opacity at 1, otherwise
@@ -246,7 +246,7 @@ d3.json("Json_Graph.json", function (error, graph) {
 
                 if (thisOpacity === 1 && !highlighted.has(text)) {
                     svg.append('text')
-                        .attr('class', 'svgtext')
+                        .attr('class', '.svgtext')
                         .attr('x', +d3.select(this).attr('cx') + +d3.select(this).attr('r') + 10)
                         .attr('y', +d3.select(this).attr('cy') + (+d3.select(this).attr('r') / 2))
                         .text(text);
@@ -270,7 +270,7 @@ d3.json("Json_Graph.json", function (error, graph) {
     }
 
     function mouseOut() {
-        d3.select("bands").selectAll("text").remove();
+        d3.select("#bands").selectAll("text").remove();
         node.style("stroke-opacity", 1);
         node.style("fill-opacity", 1);
         link.style("stroke-opacity", 1);
