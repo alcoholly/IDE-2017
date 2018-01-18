@@ -82,7 +82,7 @@ var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 d3.json("Json_Graph.json", function (error, graph) {
     if (error) throw error;
-    var svg = d3.select("bands")
+    var svg = d3.select("#bands")
             .call(d3.zoom()
                 .scaleExtent([1, 10])
                 .on("zoom", zoom)),
