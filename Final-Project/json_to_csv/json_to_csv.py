@@ -11,11 +11,15 @@ pkl_file.close()
 all_countries = []
 all_genres = []
 
+max = 0
+
 for key in data:
     all_genres.append(key)
     for d in data[key]:
         all_countries.append(d)
-
+        if data[key][d] > max:
+            max = data[key][d]
+print(all_genres)
 with open('out.csv', "wb") as csv_file:
     writer = csv.writer(csv_file, delimiter=',')
     header = ['country']

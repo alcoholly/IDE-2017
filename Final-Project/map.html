@@ -1,50 +1,164 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet">
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <link href="d3.geomap.css" rel="stylesheet">
   <script src="d3.geomap.dependencies.min.js"></script>
   <script src="d3.geomap.min.js"></script>
-
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3-queue/3.0.7/d3-queue.js"></script>
   <style>
-  path:hover{
-    fill:black !important;
-}
+  body{
+    font-family: 'Roboto', sans-serif;
+  }
+    path:hover{
+      fill:purple !important;
+    }
+
+    .path:hover:after {
+          content: attr(data-tooltip);
+      }
+
+    #community_select {
+      border: 1px solid black;
+      padding: 4px;
+      background: rgba(255,255,255,0.5);
+      width:200px;
+      margin: 0 0 10px 0;
+      margin-top:10px;
+      margin-left:10px;
+    }
+
+    #tooltip{
+        font-size:14px;
+        display:none;
+        position: absolute;
+        float: left;
+        border: 1px solid black;
+        border-radius: 5px 5px 5px 5px;
+        background-color: #DFA06E;
+        height:55px;
+        width:auto;
+        padding:5px;
+    }
+
+    #tooltip-header{
+      font-size:17px;
+    }
+
+    #tooltip-community{
+      font-size:15px;
+    }
+
   </style>
 
 </head>
 
 
 <body>
-  <button onclick="change_community()">Change community</button>
+  <div style="border:1px solid black; width:1002px; height:auto;">
+  <select id="community_select">
+    <option value="svensk-folk-swedish-alt-country">svensk-folk-swedish-alt-country</option>
+    <option value="brit-pop-rock-piano-post">brit-pop-rock-piano-post</option>
+    <option value="roll-oldies-60s-heavy-70s">roll-oldies-60s-heavy-70s</option>
+    <option value="60s-oldies-motown-50s-40s">60s-oldies-motown-50s-40s</option>
+    <option value="indietronica-folk-revival-post-punk">indietronica-folk-revival-post-punk</option>
+    <option value="r'n'b-hop-hip-r&b-urban">r'n'b-hop-hip-r&b-urban</option>
+    <option value="house-tropical-electro-dj-kygo">house-tropical-electro-dj-kygo</option>
+    <option value="east-rap-coast-hop-hip">east-rap-coast-hop-hip</option>
+    <option value="metal-grunge-screamo-nu-heavy">metal-grunge-screamo-nu-heavy</option>
+    <option value="skitz0rz-sunflower-factor-bitch-uitluisteren">skitz0rz-sunflower-factor-bitch-uitluisteren</option>
+    <option value="minimal-trip-hop-idm-techno">minimal-trip-hop-idm-techno</option>
+  </select>
+  <svg style="width:1000; height: 520;" id="map"></svg>
+</div>
 
-  <div id="map"></div>
+<div id="tooltip">
+<span id="tooltip-header"></span>
+<br><br>
+<span id="tooltip-community"></span>
+</div>
+
+
 </body>
 
 
 <script>
+$('#community_select').on('change', function() {
+  map.column(this.value).update()
+})
 
-function change_community(){
-  map.column('roll-oldies-60s-heavy-70s').update()
-}
 
 var map = d3.geomap.choropleth()
     .geofile('countries.json')
-    .colors(['#000000','#080808','#101010','#181818','#202020','#282828','#303030','#383838','#404040','#484848','#505050','#585858','#606060','#686868','#696969','#707070','#787878','#808080','#888888','#909090','#989898','#A0A0A0'])
-    .column('brit-pop-rock-piano-post')
-    .domain([0, 21])
-    .legend(false)
+    .colors(['#ffffb2','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#b10026'])
+    .column('svensk-folk-swedish-alt-country')
+    .legend(true)
+    .format(d3.format(',.0f'))
     .unitId('country');
 
-d3.select('#map')
-    .call(map.draw, map);
 
 d3.csv('map_test_data.csv', function(error, data) {
   d3.select('#map')
+  .call(map.draw, map)
       .datum(data)
+      .attr('asd','adssad')
       .call(map.draw, map);
 });
+
+
+setTimeout(function(){
+  
+  $( "path" ).hover(function( ) {
+    var data = $( this ).text().split("\n");
+    $(this).attr("title","");
+    country = data[0]
+    community = ""
+
+    if (data.length === 1){
+      community = "No data"
+    } else {
+      community = data[2]
+    }
+
+    $('#tooltip-header').html(country);
+    $('#tooltip-community').html(community);
+
+    $('#tooltip').css('display', 'block');
+
+
+  });
+
+  $( "path" ).mouseout(function( ) {
+    $('#tooltip').css('display', 'none');
+  });
+
+}, 200);
+
+
+$(document).bind('mousemove', function(e){
+    $('#tooltip').css({left: e.pageX + 20, top: e.pageY + 10});
+});
+
 
 </script>
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
