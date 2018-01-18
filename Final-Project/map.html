@@ -35,11 +35,13 @@
         display:none;
         position: absolute;
         float: left;
-        border: 1px solid black;
+        border: 1px solid blue;
+        box-shadow: 1px 1px #888888;
         border-radius: 5px 5px 5px 5px;
-        background-color: #DFA06E;
+
         height:55px;
         width:auto;
+        background: rgba(223,160,110,.9);
         padding:5px;
     }
 
@@ -109,7 +111,7 @@ d3.csv('map_test_data.csv', function(error, data) {
 
 
 setTimeout(function(){
-  
+
   $( "path" ).hover(function( ) {
     var data = $( this ).text().split("\n");
     $(this).attr("title","");
