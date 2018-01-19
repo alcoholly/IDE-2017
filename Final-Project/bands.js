@@ -241,6 +241,7 @@ d3.json("Json_Graph.json", function (error, graph) {
                         .attr('class', '.svgtext')
                         .attr('x', +d3.select(this).attr('cx') + +d3.select(this).attr('r') + 10)
                         .attr('y', +d3.select(this).attr('cy') + (+d3.select(this).attr('r') / 2))
+                        .attr("pointer-events", "none")
                         .text(text);
                 }
                 return thisOpacity;
@@ -263,7 +264,7 @@ d3.json("Json_Graph.json", function (error, graph) {
 
     function mouseOut() {
         d3.select("#bands").selectAll("text").remove();
-        d3.select('#nametext').text(node_on_mouse.attr(''));
+        d3.select('#nametext').text('');
         node.style("stroke-opacity", 1);
         node.style("fill-opacity", 1);
         link.style("stroke-opacity", 1);
