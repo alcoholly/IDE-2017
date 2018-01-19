@@ -35,8 +35,9 @@ setTimeout(function(){
             community = data[2]
         }
 
-        $('#tooltip-header').html(country);
-        $('#tooltip-community').html(community);
+        text = country + '<br><br>' + community;
+
+        $('#tooltip-header').html(text);
 
         $('#tooltip').css('display', 'block');
 

@@ -15,7 +15,7 @@ function defocus(node, hidden=false){
     node.style("fill-opacity", hidden ? 0.05 : 1);
 }
 
-function focus(node){
+function focus_node(node){
     name = node.attr("text");
 
     if(!highlighted.has(name)) {
@@ -77,24 +77,30 @@ function search_node() {
 
 }
 
-var color = d3.scaleOrdinal(d3.schemeCategory20);
+var community_color = d3.scaleOrdinal(d3.schemeCategory20);
 
+d3zoom = d3.zoom;
+d3forceSimulation = d3.forceSimulation;
+d3forceLink = d3.forceLink;
+d3forceManyBody = d3.forceManyBody;
+d3forceCenter = d3.forceCenter;
+d3drag = d3.drag;
 
 d3.json("Json_Graph.json", function (error, graph) {
     if (error) throw error;
     var svg = d3.select("#bands")
-            .call(d3.zoom()
+            .call(d3zoom()
                 .scaleExtent([1, 10])
                 .on("zoom", zoom)),
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
-    var simulation = d3.forceSimulation(graph.nodes)
-        .force("link", d3.forceLink().id(function (d) {
+    var simulation = d3forceSimulation(graph.nodes)
+        .force("link", d3forceLink().id(function (d) {
             return d.id;
         }).distance(30))
-        .force("charge", d3.forceManyBody().strength(-5))
-        .force("center", d3.forceCenter(width / 2, (height + 60) / 2))
+        .force("charge", d3forceManyBody().strength(-5))
+        .force("center", d3forceCenter(width / 2, (height + 60) / 2))
         .stop();
 
     simulation.force("link")
@@ -149,14 +155,13 @@ d3.json("Json_Graph.json", function (error, graph) {
             return d['node degree'] * 1.4;
         })
         .attr("fill", function (d) {
-            return color(d.community);
+            return community_color(d.community);
         })
         .attr('stroke-width', 20)
-        .call(d3.drag()
+        .call(d3drag()
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
-
 
     function zoom() {
         d3.select("#bands").selectAll("text").remove();
