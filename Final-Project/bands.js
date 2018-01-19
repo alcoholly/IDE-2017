@@ -31,6 +31,7 @@ function focus_node(node){
         .attr('class', '.svgtext')
         .attr('x', node.attr('cx'))
         .attr('y', node.attr('cy'))
+        .attr('color', 'white')
         .text(node.attr('text'));
 
     node.style("stroke-opacity", 1);
@@ -245,10 +246,11 @@ d3.json("Json_Graph.json", function (error, graph) {
 
                 if (thisOpacity === 1 && !highlighted.has(text)) {
                     svg.append('text')
-                        .attr('class', '.svgtext')
+                        .attr('class', 'svgtext')
                         .attr('x', +d3.select(this).attr('cx') + +d3.select(this).attr('r') + 10)
                         .attr('y', +d3.select(this).attr('cy') + (+d3.select(this).attr('r') / 2))
                         .attr("pointer-events", "none")
+                        .attr('color', 'white')
                         .text(text);
                 }
                 return thisOpacity;

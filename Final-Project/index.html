@@ -56,7 +56,10 @@
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
         pointer-events: none;
         font-size: 11px;
+        color:black;
+        text-shadow: 1px 1px white;
         pointer-events: none;
+
     }
 
     .zoomtext {
@@ -135,34 +138,38 @@
 
 <body>
   <center>
-    <h1>Bands visualisation</h1>
+    <h1>Last.fm data visualisation</h1>
   </center>
 
   <center><h2>Introduction</h2></center>
   <div style="width: 600px; margin:auto;">
-      The intended audience is not specified since we do not intend to dive into very technical details about graph properties. Our goal is to provide a basic comprehensive description of the musical communities and the distribution of community preferences on a global level. Thus, this project would be of interest for anyone interested in popular music and Last.fm users preferences.
 
+    For this final project we have made use of datasets from the <a href="https://www.last.fm/api">last.fm API</a>. One of the datasets consists of 601 artists mapped to similar artists, where the size of the node is determined by its degree (number of adjacent nodes). The other dataset consists of music "communities", which are determined by tags from the artists.
+The data was collected as JSON, and for our second visualisation we used Python to <a href="https://github.com/alcoholly/IDE-2017/tree/master/Final-Project/json_to_csv">convert</a> this to csv, which made it easier to load the data in the library we were using.
   </div><br>
         <center><h2>Visualisation 1</h2></center>
         <div style="width: 600px; margin:auto;">
-            Our dataset consists of a network of 601 artists that correspond to the set of the most popular artists globally based on the musical preferences of Last.fm users. The links between the nodes are based on a similarity score also provided by Last.fm.
+            The graph in our first visualisation shows the relations between artists. The node sizes are determined by their degrees. <br>
+            The search box highlights any matches for the search string. Zoom can be achieved by scrolling.
+            <!---Our dataset consists of a network of 601 artists that correspond to the set of the most popular artists globally based on the musical preferences of Last.fm users. The links between the nodes are based on a similarity score also provided by Last.fm.
             Data is retrieved from Last.FM's API and was originally used from one of our group members for a project in Interactive Graphs & Interactions course in DTU. More information about this project and how the dataset was generated can be found here: Link (Links to an external site.)Links to an external site.
             Each artist is mapped to: 1) a list of countries where they were found to be amongst the most popular, and 2) a label that denotes the community that they belong to -  based on the partition of the network using Louvain algorithm (13 communities were detected). The community labels were further mapped to genre-related words that were retrieved using tf-idf weighting scheme on Last.fm tags. This way, each community of the network is associated with the top Last-fm tags that are representative of musical styles and serve as genre labels. Some label examples are provide below:
             <br>
             <br>Community 3: east-rap-coast-hop-hip
             <br>Community 9: svensk-folk-svenskt-swedish-alt-country
-            <br>Community 11: indietronica-folk-revival-post-punk-rock
+            <br>Community 11: indietronica-folk-revival-post-punk-rock--->
         </div><br>
         <div class="bands_container">
             <input id="search" style="position:relative; margin-left:380px;" type="text" placeholder="Search..." onkeyup="search_node()">
-            <p id="zoomtext" style="position: absolute; pointer-events: none; margin-left:15px;">100%</p>
-            <p id="nametext" style="position: absolute; margin-left: 250px; pointer-events: none"></p>
-            <p id="communitytext" style="position: absolute; margin-left: 450px; pointer-events: none"></p>
-            <svg class="bands_svg" id="bands" style="width: 100%; height: 100%; margin-top:-20px;"></svg>
+            <p id="zoomtext" style="position: absolute; pointer-events: none; margin-left:15px; color:white;">100%</p>
+            <p id="nametext" style="position: absolute; margin-left: 250px; pointer-events: none color:white;"></p>
+            <p id="communitytext" style="position: absolute; margin-left: 450px; pointer-events: none; color:white;"></p>
+            <svg class="bands_svg" id="bands" style="width: 100%; height: 100%; margin-top:-20px; background-color:black;"></svg>
         </div>
         <center><h2>Visualisation 2</h2></center>
         <div style="width: 600px; margin:auto;">
-            The second part of the project aims to explore the musical preferences of Last.fm users around the world. For this purpose, we will create a map visualization that presents the distribution of musical preferences for each musical community on country and/or continent level.
+          This map shows the music preferences for each country with regards to the communities. <br>
+          The select in the top-left corner can be used to change community, and the legend is updated accordingly.
         </div><br>
         <div class="map_container">
             <svg id="map" style="width: 100%; height: 100%; margin:auto;">
@@ -187,7 +194,12 @@
             </svg>
         </div>
 
-
+        <center><h2>Credits</h2></center>
+        <div style="width: 600px; margin:auto;">
+          For the virst visualisation we took some inspiration from <a href="https://bl.ocks.org/vasturiano/f59675656258d3f490e9faa40828c0e7">
+          here</a>, <a href="https://bl.ocks.org/mbostock/3680957">here</a> as well as <a href="https://bl.ocks.org/mbostock/1667139"> here</a>.<br>
+          For the second visualisation we used <a href="https://d3-geomap.github.io/">this</a> library and worked with examples provided on their website.
+        </div><br>
     <div id="tooltip">
         <span id="tooltip-header"></span>
     </div>
