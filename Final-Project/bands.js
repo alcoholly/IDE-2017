@@ -40,7 +40,7 @@ function focus_node(node){
 function search_node() {
 
     search_query = $("#search").val();
-
+    d3.select("svg").selectAll("text").remove();
 
 
     var nodes = d3.selectAll('circle').each(function (d) {
