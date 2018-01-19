@@ -1,4 +1,4 @@
-const FOCUS_SIZE = 5;
+const FOCUS_SIZE = 1;
 
 var highlighted = new Set();
 
@@ -28,7 +28,7 @@ function focus_node(node){
     var svg = d3.select("#bands");
 
     svg.append('text')
-        .attr('class', '.svgtext')
+        .attr('class', 'svgtext')
         .attr('x', node.attr('cx'))
         .attr('y', node.attr('cy'))
         .attr('color', 'white')
