@@ -49,7 +49,7 @@ function search_node() {
 
         if (search_query.length > 2) {
             if (name.toLowerCase().includes(search_query.toLowerCase())) {
-                focus(current);
+                focus_node(current);
             } else {
                 defocus(current, true);
             }
