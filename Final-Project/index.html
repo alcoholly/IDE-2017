@@ -174,7 +174,7 @@
             The graph in our first visualisation consists of 590 nodes/artists and 2371 links. The links connect similar artists based on a similarity score (also provided by <a href="https://www.last.fm/api">last.fm API</a>). The graph is divided into 11 communities using the <a href="https://pypi.python.org/pypi/python-louvain">Louvain algorithm </a> for community detection. The detected communities were further mapped to genre-related words that were retrieved using tf-idf weighting scheme on Last.fm tags.
             This way, each community of the network is associated with the top Last-fm tags that are representative of musical styles and serve as genre labels. When the user hovers over a node the corresponding genre label appears at the top of the panel.
             The size of each node  in the graph is determined by its degree (number of adjacent nodes). As the graph contains a substantial amount of nodes we included a search box that allows the user to detect specific artists
-            by highlighting any matches for the input string. We further included a zoom feature that allows for a closer look at the nodes and their connections.
+            by highlighting any matches for the input string. We further included a zoom feature on scroll that allows for a closer look at the nodes and their connections.
 
         </div><br>
         <div class="bands_container">
