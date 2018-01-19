@@ -263,6 +263,9 @@ d3.json("Json_Graph.json", function (error, graph) {
     }
 
     function mouseOut() {
+        if(this.nodeName != 'circle'){
+            return
+        }
         d3.select("#bands").selectAll("text").remove();
         d3.select('#nametext').text('');
         node.style("stroke-opacity", 1);
