@@ -24,6 +24,7 @@ d3.csv('data/map_data.csv', function(error, data) {
 setTimeout(function(){
 
     $( "path" ).hover(function( ) {
+      console.log('hvoer')
         var data = $( this ).text().split("\n");
         $(this).attr("title","");
         country = data[0]
@@ -48,10 +49,9 @@ setTimeout(function(){
         $('#tooltip').css('display', 'none');
     });
 
-}, 200);
+}, 2500);
 
 
 $(document).bind('mousemove', function(e){
     $('#tooltip').css({left: e.pageX + 20, top: e.pageY + 10});
 });
-
