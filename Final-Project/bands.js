@@ -99,8 +99,8 @@ d3.json("Json_Graph.json", function (error, graph) {
         .force("link", d3forceLink().id(function (d) {
             return d.id;
         }).distance(30))
-        .force("charge", d3forceManyBody().strength(-5))
-        .force("center", d3forceCenter(width / 2, (height + 60) / 2))
+        .force("charge", d3forceManyBody().strength(-2))
+        .force("center", d3forceCenter(width+500, (height + 360)))
         .stop();
 
     simulation.force("link")
