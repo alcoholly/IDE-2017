@@ -171,7 +171,7 @@
   </div><br>
         <center><h2>Musical Network</h2></center>
         <div style="width: 600px; margin:auto;">
-            The graph in our first visualisation consists of 590 nodes/artists and 2371 links. The links connect similar artists based on a similarity score (also provided by <a href="https://www.last.fm/api">last.fm API</a>). The graph is divided into 11 communities using the <a href="https://pypi.python.org/pypi/python-louvain">Louvain algorithm for community detection</a>. The communities were further mapped to genre-related words that were retrieved using tf-idf weighting scheme on Last.fm tags.
+            The graph in our first visualisation consists of 590 nodes/artists and 2371 links. The links connect similar artists based on a similarity score (also provided by <a href="https://www.last.fm/api">last.fm API</a>). The graph is divided into 11 communities using the <a href="https://pypi.python.org/pypi/python-louvain">Louvain algorithm </a> for community detection. The detected communities were further mapped to genre-related words that were retrieved using tf-idf weighting scheme on Last.fm tags.
             This way, each community of the network is associated with the top Last-fm tags that are representative of musical styles and serve as genre labels. When the user hovers over a node the corresponding genre label appears at the top of the panel.
             The size of each node  in the graph is determined by its degree (number of adjacent nodes). As the graph contains a substantial amount of nodes we included a search box that allows the user to detect specific artists
             by highlighting any matches for the input string. We further included a zoom feature that allows for a closer look at the nodes and their connections.
@@ -187,9 +187,9 @@
         <center><h2>Musical Genre Preferences Worldwide</h2></center>
         <div style="width: 600px; margin:auto;">
             As we intend to explore global trends regarding Last.fm users musical tastes, each artist of our network is mapped to a list of countries where they were found to be amongst the most popular.
-            This map shows the music genre preferences for each country with regards to the communities/genres. The gray areas correspond to countries that we did not manage to retrieve data for. The
-            more red an country is the higher the number of artists of a given genre are amongst its top preferences. The more yellow a country is the lower the number of
-            artists of a given genre are amongst the most preferred artists in this country. <br>
+            This map shows the music genre preferences for each country with regards to the communities/genres. The gray areas correspond to countries that we did not manage to retrieve data for. <strong> Given a musical genre </strong>, the
+            more red an country is the higher the number of artists are amongst its top preferences. The more yellow a country is the lower the number of
+            artists  are amongst the most preferred ones in this country. <br>
           The select bar in the top-left corner can be used to change community/genre. The legend & the map are updated accordingly.
         </div><br>
         <div class="map_container">
@@ -217,7 +217,7 @@
         <br>
         <center><h2>Distribution of nodes (artists) to communities (genres)</h2></center>
         <div style="width: 600px; margin:auto;">
-          This visualization displays the distribution of nodes to communities and allows us to directly compare the size of each community.
+          This visualization displays the distribution of nodes to communities and allows us to directly compare the size between communities.
         </div><br><br>
         <div id="barchart_container">
         <svg id="barchart"></svg>
