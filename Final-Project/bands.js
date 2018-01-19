@@ -157,6 +157,7 @@ d3.json("Json_Graph.json", function (error, graph) {
         .attr("fill", function (d) {
             return community_color(d.community);
         })
+        .attr("community", function (d) {return d.community})
         .attr('stroke-width', 20)
         .call(d3drag()
             .on("start", dragstarted)
@@ -233,6 +234,7 @@ d3.json("Json_Graph.json", function (error, graph) {
 
             node_on_mouse = d3.selectAll("circle").filter(function(n) { return n.id === d.id; });
             d3.select('#nametext').text(node_on_mouse.attr('text'));
+            d3.select('#communitytext').text(node_on_mouse.attr('community'));
 
             // check all other nodes to see if they're connected
             // to this one. if so, keep the opacity at 1, otherwise
@@ -273,6 +275,7 @@ d3.json("Json_Graph.json", function (error, graph) {
         }
         d3.select("#bands").selectAll("text").remove();
         d3.select('#nametext').text('');
+        d3.select('#communitytext').text('');
         node.style("stroke-opacity", 1);
         node.style("fill-opacity", 1);
         link.style("stroke-opacity", 1);
