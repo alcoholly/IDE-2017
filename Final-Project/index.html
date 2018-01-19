@@ -14,6 +14,26 @@
 
 
 <style>
+.bar{
+    fill:green;
+    stroke:black;
+}
+
+.bar:hover{
+    stroke:black;
+    fill:red;
+}
+    #barchart_container{
+      margin:auto;
+      width:900px;
+      height:auto;
+    }
+
+    #barchart{
+        width:900px;
+        height:720px;
+    }
+
     .community_selector {
         margin-top: 10px;
         margin-left: 5px;
@@ -76,11 +96,11 @@
         left: 250px;
     }
 
-    .communitytext {
+    #communitytext {
         font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
         position: absolute;
-        top: 20px;
-        left: 250px;
+        margin-left:2px;
+        margin-top:-20px;
         font-weight: bold;
     }
 
@@ -193,6 +213,11 @@ The data was collected as JSON, and for our second visualisation we used Python 
                 </foreignObject>
             </svg>
         </div>
+        <br>
+        <div id="barchart_container">
+        <svg id="barchart"></svg>
+      </div>
+        <br>
 
         <center><h2>Credits</h2></center>
         <div style="width: 600px; margin:auto;">
@@ -203,6 +228,7 @@ The data was collected as JSON, and for our second visualisation we used Python 
     <div id="tooltip">
         <span id="tooltip-header"></span>
     </div>
+
 </body>
 
 
@@ -213,6 +239,60 @@ The data was collected as JSON, and for our second visualisation we used Python 
 
 <script src="bands.js" type="text/javascript"></script>
 <script src="map.js" type="text/javascript"></script>
+<script>
+d3.select(window).on('load', init);
 
+function init() {
+    var margin = {top: 5, right: 0, bottom: 5, left: 40},
+        width = 860;
+    var height = 500;
+
+
+    var y = d3.scaleLinear().range([height, 0]);
+    var x = d3.scaleBand().range([0, width]);
+
+    var xAxis = d3.axisBottom(x);
+    var yAxis = d3.axisLeft(y);
+
+    var svg = d3.select("#barchart")
+        .append("g")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    d3.csv("barchart.csv", function(data) {
+
+
+
+        x.domain(data.map(function(d) { return d.community; }))
+            .paddingInner(0.1)
+            .paddingOuter(0.2);
+        y.domain([0, d3.max(data, function(d) { return +d.n_artists; }) + 10]);
+
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(10))
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", "rotate(-65)");
+
+        svg.append("g")
+            .call(yAxis)
+
+        svg.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("data-mean", function(d) { return d.n_artists; })
+            .attr("x", function(d) { return x(d.community); })
+            .attr("width", x.bandwidth())
+            .attr("y", function(d) { return y(d.n_artists); })
+            .attr("height", function(d) { return height - y(d.n_artists); })
+
+    });
+}
+</script>
 
 </html>

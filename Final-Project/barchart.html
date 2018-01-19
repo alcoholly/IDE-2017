@@ -22,7 +22,7 @@
         stroke:black;
         fill:red;
     }
-    .svgplot{
+    #barchart{
         width:100%;
         height:100%;
     }
@@ -79,13 +79,13 @@
                 .attr("width", x.bandwidth())
                 .attr("y", function(d) { return y(d.n_artists); })
                 .attr("height", function(d) { return height - y(d.n_artists); })
-                
+
         });
     }
 </script>
 <body>
 
-<svg id="barchart" class="svgplot"></svg>
+<svg id="barchart"></svg>
 
 </body>
 </html>
